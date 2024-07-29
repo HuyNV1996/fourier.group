@@ -1,0 +1,19 @@
+.step-item.active span:nth-child(2){
+  color: var(--secondaryColor);
+}
+
+.step-item.active{
+  background-color: var(--secondaryColor);
+  border-color: rgba(195, 225, 166, 1);
+}
+
+.step-item{
+  color: white;
+  background-color: #AAA9A9;
+  border-color: rgba(195, 225, 166, 0);
+  transition: all 0.5s ease-in-out;
+}
+
+#progress-bar{
+  transition: width 0.5s ease-in-out;
+}

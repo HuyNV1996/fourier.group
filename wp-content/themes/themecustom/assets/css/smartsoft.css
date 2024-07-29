@@ -1,0 +1,111 @@
+.smart-list-item {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-bottom: 2px solid #636363;
+}
+
+.smart-list-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--thirdtyColor);
+  transition: width 0.2s ease-in-out;
+  transition-delay: 0.2s;
+}
+
+.smart-list-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(195, 225, 166, 0.10);
+  /* z-index: -1; */
+  transition: width 0.3s ease-in-out;
+}
+
+.smart-list-item span {
+  display: block;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  transition: color 0.3s ease-in-out;
+}
+
+.smart-list-item i {
+  opacity: 0;
+  color: #fff;
+  font-size: 24px;
+  transition: all 0.3s ease-in-out;
+}
+
+.smart-list-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.smart-list-item.active::before {
+  width: 100%;
+}
+
+.smart-list-item.active::after {
+  width: 30%;
+}
+
+.smart-list-item:hover span,
+.smart-list-item.active span {
+  color: var(--secondaryColor);
+}
+
+.smart-list-item:hover i,
+.smart-list-item.active i {
+  opacity: 1;
+  color: var(--secondaryColor);
+}
+
+.btn-slide {
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+.btn-slide:nth-child(1):hover,
+.btn-slide:nth-child(1):active {
+  border-color: transparent;
+  background: linear-gradient(var(--primaryColor), var(--primaryColor)) padding-box, linear-gradient(to left, var(--secondaryColor), var(--whiteColor)) border-box;
+}
+
+.btn-slide:nth-child(2):hover,
+.btn-slide:nth-child(2):active {
+  border-color: transparent;
+  background: linear-gradient(var(--primaryColor), var(--primaryColor)) padding-box, linear-gradient(to right, var(--secondaryColor), var(--whiteColor)) border-box;
+}
+
+.btn-slide:hover i,
+.btn-slide:active i {
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-slide:nth-child(1):hover i,
+.btn-slide:nth-child(1):active i {
+  background-image: linear-gradient(to left, var(--secondaryColor), var(--whiteColor));
+}
+
+.btn-slide:nth-child(2):hover i,
+.btn-slide:nth-child(2):active i {
+  background-image: linear-gradient(to right, var(--secondaryColor), var(--whiteColor));
+}
