@@ -84,19 +84,30 @@
 
 			<div
 				class="flex overflow-hidden relative flex-col justify-center items-start px-16 py-20 min-h-[560px] max-md:px-5 max-md:py-16">
-				<img loading="lazy" srcset="<?php bloginfo('template_directory')?>/assets/img/home/demo.jpg" class="object-cover absolute inset-0 size-full" />
+				<?php
+					$custom_image_url = get_theme_mod('custom_image_setting', '');
+					if (!empty($custom_image_url)) {
+						echo '<img loading="lazy" src="' . esc_url($custom_image_url) . '" class="object-cover absolute inset-0 size-full" />';
+					} else {
+						echo '<img loading="lazy" srcset="' . get_template_directory_uri() . '/assets/img/home/demo.jpg" class="object-cover absolute inset-0 size-full" />';
+					}
+				?>
 				<div class="flex relative flex-col mt-7 ml-0 md:ml-14 max-w-full">
 					<div class="text-[32px] w-[80%] md:w-[50%] font-bold text-white max-md:max-w-full md:text-[56px]">
 						&quot;Empowering Innovation, Delivering
 						<span class="text-secondary">Excellence</span>
 						.&quot;
 					</div>
-					<div class="mt-6 text-base leading-6 text-white max-md:max-w-full w-full md:w-[65%]">
-						We are dedicated to providing top-notch maintenance and support, catering
-						to the unique needs of both startups and established enterprises. Discover
-						how Fourier can help drive your business forward with our expert solutions
-						and unwavering commitment to innovation.
-					</div>
+					<?php
+						$custom_text = get_theme_mod('custom_text_setting', '');
+						if (!empty($custom_text)) {
+							echo '<div class="mt-6 text-base leading-6 text-white max-md:max-w-full w-full md:w-[65%]">' . esc_html($custom_text) . '</div>';
+						} else {
+							echo '<div class="mt-6 text-base leading-6 text-white 			max-md:max-w-full w-full md:w-[65%]">
+								We are dedicated to providing top-notch maintenance and support, catering to the unique needs of both startups and established enterprises. Discover how Fourier can help drive your business forward with our expert solutions and unwavering commitment to innovation.
+							</div>';
+						}
+					?>
 				</div>
 			</div>
 

@@ -9,14 +9,14 @@ body{
   overflow-x: hidden;
 }
 
-.item-menu {
+.menu-item {
   position: relative;
 }
 
-.item-menu:after {
+.menu-item:after {
   content: '';
   position: absolute;
-  bottom: 15px;
+  bottom: -5px;
   left: 50%;
   width: 60%;
   height: 4px;
@@ -26,8 +26,8 @@ body{
   transform: translateX(-50%);
 }
 
-.item-menu:hover::after,
-.item-menu.active::after {
+#menu-desktop .menu-item:hover::after,
+#menu-desktop .menu-item.current_page_item::after {
   opacity: 1;
 }
 

@@ -22,7 +22,7 @@
   <header class="w-full bg-white z-[9999]" id="header">
     <nav class="mx-auto max-w-layout flex items-center max-md:justify-between px-5 py-3 md:p-0 static max-md:relative">
       <div id="logo" class="mr-12">
-        <a href="#" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">Fourier</a>
+        <a href="<?php bloginfo('url')?>" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">Fourier</a>
       </div>
       <!-- Start Menu Desktop-->
 		<?php wp_nav_menu(array(

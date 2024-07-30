@@ -88,9 +88,12 @@ get_header();
 				// Kiểm tra nếu có bài viết
 				if ($query->have_posts()) :
 					while ($query->have_posts()) : $query->the_post(); ?>
-						<div class="card">
-							<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-							<div class="post-excerpt"><?php the_excerpt(); ?></div>
+						<div class="card flex ml-5 mr-5">
+							<a href="<?php the_permalink(); ?>"><?php echo get_the_post_thumbnail(get_the_id(), 'full', array('class' => 'thumnail')); ?></a>
+							<div class="post-content ml-4">
+								<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+								<div class="post-excerpt"><?php the_excerpt(); ?></div>
+							</div>
 						</div>
 					<?php endwhile;
 					wp_reset_postdata(); // Đặt lại dữ liệu bài viết
@@ -102,7 +105,7 @@ get_header();
 		</div>
 
 		<div id="pagination"
-			class="flex justify-center items-center max-md:mt-10 self-stretch px-16 text-sm leading-6 text-center whitespace-nowrap text-primary mt-5x">
+			class="flex justify-center items-center max-md:mt-10 self-stretch px-16 text-sm leading-6 text-center whitespace-nowrap text-primary mt-5">
 			<div class="flex gap-1 items-center">
 				<?php
 
