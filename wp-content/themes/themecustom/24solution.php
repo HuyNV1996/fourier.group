@@ -1,85 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <title>Trang chủ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
-  <link rel="stylesheet" href="/assets/css/reset.css" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <link rel="stylesheet" href="/assets/css/header.css">
-  <link rel="stylesheet" href="/assets/css/itacademy.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-</head>
-
-<body>
-  <header class="w-full bg-white z-[9999]" id="header">
-    <nav class="mx-auto max-w-layout flex items-center max-md:justify-between px-5 py-3 md:p-0 static max-md:relative">
-      <div id="logo" class="mr-12">
-        <a href="#" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">Fourier</a>
-      </div>
-      <!-- Start Menu Desktop-->
-      <ul id="menu-desktop" class="flex-1 text-primary leading-6 gap-2 hidden md:flex">
-        <li class="item-menu active cursor-pointer flex justify-center gap-1 items-center">
-          <a href="#home" class="px-4 py-6">Home</a>
-        </li>
-
-        <li class="item-menu mega-menu cursor-pointer flex justify-center gap-1 items-center">
-          <a href="#solutions" class="pl-4 py-6 flex justify-center items-center gap-1">Solutions <i
-              class='bx bx-chevron-down pr-4'></i></a>
-        </li>
-
-        <li class="item-menu cursor-pointer flex justify-center gap-1 items-center">
-          <a href="#case-study" class="px-4 py-6">Case study</a>
-        </li>
-
-        <li class="item-menu cursor-pointer flex justify-center gap-1 items-center">
-          <a href="#contact" class="px-4 py-6">Contact us</a>
-        </li>
-      </ul>
-      <!-- End Menu Desktop-->
-      <!-- Start Menu Mobile -->
-      <ul id="menu-mobile" class="absolute w-full top-full bg-white z-50 left-0 pb-6 pt-2 shadow-md md:hidden">
-        <li class="item-menu-mb justify-between items-center px-5 py-3"><a href="#">Home</a></li>
-        <li class="item-menu-mb drop-down-mb flex justify-between items-center px-5 py-3"><a href="#">Solutions</a> <i
-            class='bx bx-chevron-down text-base'></i></li>
-        <li class="item-menu-mb drop-down-content">
-          <nav class="flex flex-col gap-6 px-8 py-6">
-            <a href="#1" class="item-dropdown font-semibold">Technology consulting</a>
-            <a href="#2" class="item-dropdown font-semibold">SmartSoft Solutions</a>
-            <a href="#3" class="item-dropdown font-semibold">Outsource IT Service</a>
-            <a href="#4" class="item-dropdown font-semibold">IT Academy</a>
-            <a href="#5" class="item-dropdown font-semibold">Drone Show Solutions</a>
-            <a href="#6"
-              class="shrink-0 py-2 px-4 self-start max-md:text-sm text-primary font-bold rounded shadow-sm border-primary border">Go
-              to overview</a>
-          </nav>
-        </li>
-        <li class="item-menu-mb flex justify-between items-center px-5 py-3"><a href="#">Case study</a></li>
-        <li class="item-menu-mb flex justify-between items-center px-5 py-3"><a href="#">Contact us</a></li>
-      </ul>
-      <!-- End Menu Mobile -->
-
-
-      <!-- Start: Get in touch -->
-      <div class="flex gap-4 md:gap-6">
-        <button type="button" class="md:flex gap-2 py-2 px-4 rounded justify-center items-center hidden ">
-          <i class='bx bx-world md:text-2xl'></i>
-          <span>EN</span>
-        </button>
-        <button type="button"
-          class="showModal py-2 px-4 bg-primary max-md:text-sm text-white font-bold rounded shadow-md hover:bg-secondary">Get
-          in
-          touch</button>
-        <button type="button" id="toggleMenu" class="md:hidden"><i class='bx bx-menu text-2xl'></i></button>
-      </div>
-      <!-- End: Get in touch -->
-    </nav>
+<?php
+/* Template Name: Solution Page */
+get_header();
+?>
 
     <!-- START:MEGA MENU -->
     <div class="mega-menu-content w-full flex absolute shadow hidden z-[9999]">
@@ -135,7 +57,7 @@
   <main>
     <section class="relative">
       <div class="min-h-[560px] w-full overflow-hidden relative">
-        <img src="/assets/img/Rectangle9.png" alt="bg" class="absolute w-full h-full object-cover">
+        <img src="<?php bloginfo('template_directory')?>/assets/img/Rectangle9.png" alt="bg" class="absolute w-full h-full object-cover">
       </div>
       <div class="min-h-[160px] bg-white"></div>
       <div class="absolute bottom-20 max-md:bottom-0 w-full flex">
@@ -169,7 +91,7 @@
     <section>
       <div
         class="flex overflow-hidden relative flex-col justify-center items-center px-16 py-20 font-semibold min-h-[480px] max-md:px-5">
-        <img loading="lazy" src="/assets/img/home/demo.jpg" class="object-cover absolute inset-0 size-full" />
+        <img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/demo.jpg" class="object-cover absolute inset-0 size-full" />
         <div
           class="flex relative flex-col justify-center items-center p-10 w-full rounded-lg backdrop-blur-[2px] bg-white bg-opacity-80 max-w-layout max-md:px-5 max-md:max-w-full">
           <div class="text-6xl font-bold text-center text-[#56A012] leading-[84px] max-md:max-w-full max-md:text-4xl">
@@ -210,7 +132,7 @@
                     <div>01</div>
                     <div class="flex-1 shrink-0 my-auto h-px bg-neutral-500"></div>
                   </div>
-                  <img loading="lazy" src="/assets/img/home/briefcase.png" class="mt-8 w-12 aspect-square" />
+                  <img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/briefcase.png" class="mt-8 w-12 aspect-square" />
                   <div class="mt-3 text-sm leading-6 text-white">
                     Acquire specialized skills more quickly compared to
                     learning only through theory
@@ -271,90 +193,11 @@
         </div>
         <div id="progressDetail" class="relative">
           <!-- RENDER -->
-        </div> 
+        </div>
         </div>
       </div>
     </section>
   </main>
-  <footer class="flex flex-col items-center py-12 max-md:px-5 bg-primary w-full">
-    <div class="max-w-layout mx-auto w-full">
-      <a href="#" class="block uppercase text-[40px] mb-8 font-extrabold text-white font-['Baloo']">FOURIER.Inc</a>
-      <div class="flex max-md:flex-col gap-8">
-        <aside class="flex flex-col flex-1">
-          <div class="flex flex-col grow text-sm leading-6 text-white">
-            <div class="flex gap-4">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/1d43e9bb5ef6ba263ca99fd55bda09ef5fc95ca2ffaaa022ec2ca7dad91d1179?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Location Icon" class="shrink-0 my-auto w-5 aspect-square" />
-              <p>117 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội</p>
-            </div>
-            <div class="flex gap-4 mt-4 whitespace-nowrap">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/e3b040a4f8c506f01d127f6b020d1f1277a762180d7ef10871fbace0bdf1565b?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Email Icon" class="shrink-0 my-auto w-5 aspect-square" />
-              <p>contact@apec.com.vn</p>
-            </div>
-            <div class="flex gap-4 mt-4">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6df5da042d478cb43f8fe745edc7ece670b62a3f0d295b7a15c4bf098cbd9e97?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Phone Icon" class="shrink-0 my-auto w-5 aspect-square" />
-              <p>1900 000 000</p>
-            </div>
-          </div>
-        </aside>
-        <div class="justify-end self-stretch max-md:max-w-full">
-          <div class="flex gap-5 max-md:gap-0 justify-between">
-            <a href="#" class="text-sm text-nowrap font-semibold leading-6 text-white">Home</a>
-            <a href="#" class="text-sm text-nowrap font-semibold leading-6 text-white">Solutions</a>
-            <a href="#" class="text-sm text-nowrap font-semibold leading-6 text-white">Case study</a>
-            <a href="#" class="text-sm text-nowrap font-semibold leading-6 text-white">Contact us</a>
-          </div>
-        </div>
-      </div>
-      <hr class="mt-16 h-px bg-white w-full">
-      <div class="flex justify-between gap-5 mt-8 w-full">
-        <p class="flex-1 text-sm leading-6 text-white">Copyright © 2024 Fourier.Inc</p>
-        <div class="flex gap-4">
-          <a href="#">
-            <i class='bx bxl-facebook-circle text-white text-lg md:text-2xl'></i>
-          </a>
-          <a href="#">
-            <i class='bx bxl-linkedin-square text-white text-lg md:text-2xl'></i>
-          </a>
-          <a href="#">
-            <i class='bx bxl-github text-white text-lg md:text-2xl'></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- MODAL -->
-  <section id="modalSupport"
-    class="hidden fixed top-0 left-0 h-screen w-full p-5 z-[9999] bg-primary/50 flex justify-center items-center">
-    <div class="max-w-[800px] w-full bg-white rounded-lg shadow-md flex flex-col p-8 text-sm leading-6 max-md:px-5">
-      <div class="flex justify-between items-start">
-        <h1 class="text-5xl font-bold leading-[72px] leading-10 text-primary max-w-full max-md:text-2xl">How can we help
-          you?</h1>
-        <button type="button" id="closeModal"><i class='bx bx-x text-3xl'></i></button>
-      </div>
-      <p class="mt-2.5 text-base leading-6 text-primary max-md:max-w-full">Fill customer's information</p>
-      <form class="flex flex-col mt-8">
-        <input type="text" id="name" name="name" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-          placeholder="Enter your name" aria-label="Name" required>
-        <input type="email" id="email" name="email" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-          placeholder="Enter your email" aria-label="Email" required>
-        <input type="text" id="company" name="company" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-          placeholder="Enter your company name" aria-label="Company" required>
-        <textarea id="message" name="message" rows="4" class="px-4 pt-3 pb-8 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-          placeholder="Enter your message" aria-label="Message"></textarea>
-        <button type="submit"
-          class="py-2 px-4 mt-6 bg-primary max-md:text-sm text-base self-end text-white font-bold rounded shadow-md hover:bg-secondary">Submit</button>
-      </form>
-    </div>
-  </section>
-  <script src="/assets/js/tailwind_custom.js"></script>
-  <script src="/assets/js/layout.js"></script>
-  <script src="/assets/js/it_academy.js"></script>
-</body>
-
-</html>
+<?php
+get_footer();
+?>
