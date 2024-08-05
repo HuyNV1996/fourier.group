@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/reset.css" />
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/style.css" />
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/header.css">
+  <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/smartsoft.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -22,7 +23,26 @@
   <header class="w-full bg-white z-[9999]" id="header">
     <nav class="mx-auto max-w-layout flex items-center max-md:justify-between px-5 py-3 md:p-0 static max-md:relative">
       <div id="logo" class="mr-12">
-        <a href="<?php bloginfo('url')?>" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">Fourier</a>
+		<?php
+		// Lấy giá trị logo từ cơ sở dữ liệu
+		$custom_logo = get_option('custom_site_logo', '');
+
+		// Hiển thị logo
+		if (!empty($custom_logo)) {
+			if (filter_var($custom_logo, FILTER_VALIDATE_URL)) { ?>
+				<a href="<?php echo esc_url(home_url()); ?>" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">
+					<img src="<?php echo esc_url($custom_logo); ?>" class="logo" alt="<?php echo esc_attr(get_bloginfo('name')); ?>">
+				</a>
+			<?php } else { ?>
+				<a href="<?php echo esc_url(home_url()); ?>" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">
+					<?php echo esc_html($custom_logo); ?>
+				</a>
+			<?php }
+		} else { ?>
+			<a href="<?php echo esc_url(home_url()); ?>" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">
+				Fourier
+			</a>
+		<?php } ?>
       </div>
       <!-- Start Menu Desktop-->
 		<?php wp_nav_menu(array(
@@ -70,3 +90,53 @@
       </div>
       <!-- End: Get in touch -->
     </nav>
+	<!-- START:MEGA MENU -->
+	<div class="mega-menu-content w-full flex absolute shadow hidden z-[9999]">
+			<div class="bg-primary flex-1"></div>
+			<div class="max-w-layout w-full flex shrink-0">
+				<?php
+				// Lấy tất cả các trang
+				$exclude_pages = array(
+					get_page_by_title('Contact us')->ID,
+					get_page_by_title('Home')->ID,
+					get_page_by_title('Case study')->ID,
+				);
+
+				$pages = get_pages(array(
+					'exclude' => $exclude_pages,
+					'sort_column' => 'post_title',
+					'sort_order' => 'asc'
+				));
+				if ($pages) {
+					foreach ($pages as $page) {
+						if ($page->post_title == 'Solutions') { ?>
+							<div class="max-w-[400px] w-[1265px] md:py-8 md:pr-8 text-sm leading-6 text-white flex flex-col items-start bg-primary">
+								<h2 class="text-3xl font-bold leading-10"><?php echo esc_html($page->post_title); ?></h2>
+								<p class="mt-6"><?php echo esc_html(get_post_meta($page->ID, '_custom_page_description', true)); ?></p>
+								<a href="<?php echo get_permalink($page->ID); ?>" class="btn-border-gradient px-4 py-2 mt-6 font-semibold rounded" tabindex="0">Go to overview</a>
+							</div>
+						<?php }
+					}
+				} ?>
+
+				<div class="md:py-8 md:pl-8 bg-white">
+					<div class="grid md:grid-cols-3 grid-cols-1 gap-8">
+						<?php if ($pages) {
+							foreach ($pages as $page) {
+								if ($page->post_title != 'Solutions') { ?>
+									<div>
+										<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
+											<a href="<?php echo get_permalink($page->ID); ?>"><?php echo esc_html($page->post_title); ?></a>
+										</h2>
+										<p><?php echo esc_html(get_post_meta($page->ID, '_custom_page_description', true)); ?></p>
+									</div>
+								<?php }
+							}
+						} ?>
+					</div>
+				</div>
+			</div>
+			<div class="bg-white flex-1"></div>
+		</div>
+		<!-- END: MEGA MENU -->
+	</header>

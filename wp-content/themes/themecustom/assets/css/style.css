@@ -92,3 +92,29 @@
 img.thumnail {
 	width: 300px;
 }
+
+img.logo {
+	width: 90px;
+	height: auto;
+	max-height: 40px;
+    object-fit: cover;
+}
+
+.notification {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.notification.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.notification.error {
+    background-color: #f8d7da;
+    color: #9c1522;
+    border: 1px solid #f5c6cb;
+}

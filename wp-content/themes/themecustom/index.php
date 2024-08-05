@@ -1,56 +1,15 @@
-<?php get_header(); ?>
+<?php
+/* Template Name: Home Page */
 
-		<!-- START:MEGA MENU -->
-		<div class="mega-menu-content w-full flex absolute shadow hidden z-[9999]">
-			<div class="bg-primary flex-1"></div>
-			<div class="max-w-layout w-full flex shrink-0">
-				<div class="max-w-[400px] md:py-8 md:pr-8 text-sm leading-6 text-white flex flex-col items-start bg-primary">
-					<h2 class="text-3xl font-bold leading-10">Solutions</h2>
-					<p class="mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-						incididunt ut
-						labore et dolore magna aliqua.</p>
-					<a href="#" class="btn-border-gradient px-4 py-2 mt-6 font-semibold rounded" tabindex="0">Go to overview</a>
-				</div>
+$homepage = get_page_by_title('Home');
+if ($homepage) {
+    $page_id = $homepage->ID;
+	$custom_texts = get_post_meta($page_id, 'custom_texts', true) ?: array();
+	$custom_image = get_post_meta($page_id, 'custom_image_urls', true) ?: array();
+}
 
-				<div class="md:py-8 md:pl-8 bg-white">
-					<div class="grid md:grid-cols-3 grid-cols-1 gap-8">
-						<div>
-							<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-								<a href="#">SmartSoft Solutions</a>
-							</h2>
-							<p>Enhance and expand your digital investments for optimal growth.</p>
-						</div>
-						<div>
-							<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-								<a href="#">Outsource IT Service</a>
-							</h2>
-							<p>Comprehensive management of applications throughout the entire lifecycle.</p>
-						</div>
-						<div>
-							<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-								<a href="#">IT Academy</a>
-							</h2>
-							<p>Providing enterprise-standard BA/DA/Dev/Tester course through on-the-job learning.</p>
-						</div>
-						<div>
-							<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-								<a href="#">Drone Show Solutions</a>
-							</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
-						</div>
-						<div>
-							<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-								<a href="#">Technology consulting</a>
-							</h2>
-							<p>Efficiently navigate the dynamic and rapidly evolving world</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="bg-white flex-1"></div>
-		</div>
-		<!-- END: MEGA MENU -->
-	</header>
+get_header();
+?>
 
 	<main>
 		<section>
@@ -60,20 +19,23 @@
 						<div class="flex flex-col w-[54%] max-md:ml-0 max-md:w-full">
 							<div
 								class=" font-bold text-secondary max-md:max-w-full md:text-[56px] text-[32px] md:text-start text-center">
-								<span class="text-primary"> "Unlock Potential, Achieve <span class="text-secondary">Sustainable
-									Growth</span>"</span>
+								<?php if (!empty($custom_texts)) : ?>
+									<span class="text-primary">
+										"<?php echo wp_kses_post($custom_texts[0]); ?>
+										<span class="text-secondary">
+											<?php echo wp_kses_post($custom_texts[1]); ?></span>"
+									</span>
+								<?php endif; ?>
 							</div>
 						</div>
 						<div class="flex flex-col ml-5 w-[46%] max-md:ml-0 max-md:w-full">
-							<div
-								class="self-stretch my-auto text-base leading-6 text-primary max-md:mt-8 max-md:max-w-full md:text-start text-center ">
-								Welcome to Fourier, a leading IT company and a proud subsidiary of
-								Apec Group.<br /> Our team of over 100 skilled professionals has completed
-								more than 300 innovative projects for clients around the globe. At
-								Fourier, we specialize in shaping the future of IT through
-								comprehensive training programs, application engineering, and tailored
-								technology consulting services
-							</div>
+							<?php if (!empty($custom_texts)) : ?>
+								<?php if (isset($custom_texts[0])) : ?>
+									<div class="self-stretch my-auto text-base leading-6 text-primary max-md:mt-8 max-md:max-w-full md:text-start text-center">
+										<?php echo wpautop($custom_texts[2]); ?>
+									</div>
+								<?php endif; ?>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
@@ -84,30 +46,17 @@
 
 			<div
 				class="flex overflow-hidden relative flex-col justify-center items-start px-16 py-20 min-h-[560px] max-md:px-5 max-md:py-16">
-				<?php
-					$custom_image_url = get_theme_mod('custom_image_setting', '');
-					if (!empty($custom_image_url)) {
-						echo '<img loading="lazy" src="' . esc_url($custom_image_url) . '" class="object-cover absolute inset-0 size-full" />';
-					} else {
-						echo '<img loading="lazy" srcset="' . get_template_directory_uri() . '/assets/img/home/demo.jpg" class="object-cover absolute inset-0 size-full" />';
-					}
-				?>
+				<?php if (!empty($custom_image)) : ?>
+					<img loading="lazy" src="<?php echo esc_url($custom_image[0]); ?>" class="object-cover absolute inset-0 size-full" />
+				<?php endif; ?>
 				<div class="flex relative flex-col mt-7 ml-0 md:ml-14 max-w-full">
-					<div class="text-[32px] w-[80%] md:w-[50%] font-bold text-white max-md:max-w-full md:text-[56px]">
-						&quot;Empowering Innovation, Delivering
-						<span class="text-secondary">Excellence</span>
-						.&quot;
-					</div>
-					<?php
-						$custom_text = get_theme_mod('custom_text_setting', '');
-						if (!empty($custom_text)) {
-							echo '<div class="mt-6 text-base leading-6 text-white max-md:max-w-full w-full md:w-[65%]">' . esc_html($custom_text) . '</div>';
-						} else {
-							echo '<div class="mt-6 text-base leading-6 text-white 			max-md:max-w-full w-full md:w-[65%]">
-								We are dedicated to providing top-notch maintenance and support, catering to the unique needs of both startups and established enterprises. Discover how Fourier can help drive your business forward with our expert solutions and unwavering commitment to innovation.
-							</div>';
-						}
-					?>
+					<?php if (!empty($custom_texts)) : ?>
+						<div class="text-[32px] w-[80%] md:w-[50%] font-bold text-white max-md:max-w-full md:text-[56px]">
+						&quot;<?php echo wp_kses_post($custom_texts[3]); ?>
+							<span class="text-secondary"><?php echo wp_kses_post($custom_texts[4]); ?></span>.&quot;
+						</div>
+						<div class="mt-6 text-base leading-6 text-white max-md:max-w-full w-full md:w-[65%]"><?php echo wp_kses_post($custom_texts[5]); ?></div>
+					<?php endif; ?>
 				</div>
 			</div>
 

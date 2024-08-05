@@ -79,10 +79,14 @@
 	</section>
 
 	<div id="fb-root"></div>
-<script src="<?php bloginfo('template_directory')?>/assets/js/tailwind_custom.js"></script>
-<script src="<?php bloginfo('template_directory')?>/assets/js/layout.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v20.0&appId=346175334287374" nonce="5AGWWsN7"></script>
+
+	<script src="<?php bloginfo('template_directory')?>/assets/js/tailwind_custom.js"></script>
+	<script src="<?php bloginfo('template_directory')?>/assets/js/layout.js"></script>
+	<script src="<?php bloginfo('template_directory')?>/assets/js/smartsoft.js"></script>
+	<script src="<?php bloginfo('template_directory')?>/assets/js/timeline.js"></script>
+	<script src="<?php bloginfo('template_directory')?>/assets/js/slider.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v20.0&appId=346175334287374" nonce="5AGWWsN7"></script>
 </body>
 
 </html>

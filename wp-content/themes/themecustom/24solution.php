@@ -1,63 +1,19 @@
 <?php
-/* Template Name: Solution Page */
+/* Template Name: Solutions Page */
+if (is_page()) {
+    $page_id = get_the_ID();
+    $custom_texts = get_post_meta($page_id, 'custom_texts', true) ?: array();
+	$custom_image = get_post_meta($page_id, 'custom_image_urls', true) ?: array();
+}
 get_header();
 ?>
 
-    <!-- START:MEGA MENU -->
-    <div class="mega-menu-content w-full flex absolute shadow hidden z-[9999]">
-      <div class="bg-primary flex-1"></div>
-      <div class="max-w-layout w-full flex shrink-0">
-        <div class="max-w-[400px] md:py-8 md:pr-8 text-sm leading-6 text-white flex flex-col items-start bg-primary">
-          <h2 class="text-3xl font-bold leading-10">Solutions</h2>
-          <p class="mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut
-            labore et dolore magna aliqua.</p>
-          <a href="#" class="btn-border-gradient px-4 py-2 mt-6 font-semibold rounded" tabindex="0">Go to overview</a>
-        </div>
-
-        <div class="md:py-8 md:pl-8 bg-white">
-          <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">SmartSoft Solutions</a>
-              </h2>
-              <p>Enhance and expand your digital investments for optimal growth.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Outsource IT Service</a>
-              </h2>
-              <p>Comprehensive management of applications throughout the entire lifecycle.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">IT Academy</a>
-              </h2>
-              <p>Providing enterprise-standard BA/DA/Dev/Tester course through on-the-job learning.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Drone Show Solutions</a>
-              </h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Technology consulting</a>
-              </h2>
-              <p>Efficiently navigate the dynamic and rapidly evolving world</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bg-white flex-1"></div>
-    </div>
-    <!-- END: MEGA MENU -->
-  </header>
   <main>
     <section class="relative">
       <div class="min-h-[560px] w-full overflow-hidden relative">
-        <img src="<?php bloginfo('template_directory')?>/assets/img/Rectangle9.png" alt="bg" class="absolute w-full h-full object-cover">
+	  	<?php if (!empty($custom_image)) : ?>
+			<img src="<?php echo esc_url($custom_image[0]); ?>" alt="bg" class="absolute w-full h-full object-cover">
+		<?php endif; ?>
       </div>
       <div class="min-h-[160px] bg-white"></div>
       <div class="absolute bottom-20 max-md:bottom-0 w-full flex">
@@ -74,12 +30,11 @@ get_header();
                 <h1 class="mt-6 text-6xl font-bold leading-[84px] max-md:max-w-full max-md:text-4xl">
                   IT Academy
                 </h1>
-                <p class="mt-6 text-base max-md:max-w-full">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam natus asperiores rerum sequi non
-                  corporis. Nobis ipsa est esse a, quia itaque, placeat quam illum debitis adipisci cum amet ipsum.
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam natus asperiores rerum sequi non
-                  corporis. Nobis ipsa est esse a, quia itaque, placeat quam illum debitis adipisci cum amet ipsum.
-                </p>
+				<?php if (!empty($custom_texts)) : ?>
+					<p class="mt-6 text-base max-md:max-w-full">
+						<?php echo wp_kses_post($custom_texts[0]); ?>
+					</p>
+				<?php endif; ?>
               </div>
             </div>
           </div>
@@ -91,16 +46,19 @@ get_header();
     <section>
       <div
         class="flex overflow-hidden relative flex-col justify-center items-center px-16 py-20 font-semibold min-h-[480px] max-md:px-5">
-        <img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/demo.jpg" class="object-cover absolute inset-0 size-full" />
+		<?php if (!empty($custom_image)) : ?>
+			<img loading="lazy" src="<?php echo esc_url($custom_image[1]); ?>" class="object-cover absolute inset-0 size-full" />
+		<?php endif; ?>
         <div
           class="flex relative flex-col justify-center items-center p-10 w-full rounded-lg backdrop-blur-[2px] bg-white bg-opacity-80 max-w-layout max-md:px-5 max-md:max-w-full">
-          <div class="text-6xl font-bold text-center text-[#56A012] leading-[84px] max-md:max-w-full max-md:text-4xl">
-            Who we are looking for
-          </div>
-          <div class="self-stretch mt-6 text-xl leading-7 text-center text-stone-950 max-md:max-w-full">
-            Students, university students, and professionals oriented towards
-            pursuing a career in Technology.
-          </div>
+		  	<?php if (!empty($custom_texts)) : ?>
+				<div class="text-6xl font-bold text-center text-[#56A012] leading-[84px] max-md:max-w-full max-md:text-4xl">
+					<?php echo wp_kses_post($custom_texts[1]); ?>
+				</div>
+				<div class="self-stretch mt-6 text-xl leading-7 text-center text-stone-950 max-md:max-w-full">
+					<?php echo wp_kses_post($custom_texts[2]); ?>
+				</div>
+			<?php endif; ?>
           <button type="button"
             class="showModal flex gap-2 justify-center px-4 py-2 mt-8 text-sm leading-6 text-white rounded border border-lime-600 border-solid shadow bg-stone-950">
             <div>Get in touch</div>

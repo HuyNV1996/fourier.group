@@ -1,137 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+/* Template Name: Overview Page */
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <title>Solutions/Overview</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
-  <link rel="stylesheet" href="/assets/css/reset.css" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <link rel="stylesheet" href="/assets/css/header.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-</head>
-
-<body>
-  <header class="w-full bg-white z-50" id="header">
-    <nav class="mx-auto max-w-layout flex items-center max-md:justify-between px-5 py-3 md:p-0 static max-md:relative">
-      <div id="logo" class="mr-12">
-        <a href="#" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">Fourier</a>
-      </div>
-      <!-- Start Menu Desktop-->
-      <ul id="menu-desktop" class="flex-1 text-primary leading-6 gap-2 hidden md:flex">
-        <li class="item-menu active cursor-pointer flex justify-center gap-1 items-center">
-          <a href="#home" class="px-4 py-6">Home</a>
-        </li>
-
-        <li class="item-menu mega-menu cursor-pointer flex justify-center gap-1 items-center">
-          <a href="#solutions" class="pl-4 py-6 flex justify-center items-center gap-1">Solutions <i
-              class='bx bx-chevron-down pr-4'></i></a>
-        </li>
-
-        <li class="item-menu cursor-pointer flex justify-center gap-1 items-center">
-          <a href="#case-study" class="px-4 py-6">Case study</a>
-        </li>
-
-        <li class="item-menu cursor-pointer flex justify-center gap-1 items-center">
-          <a href="#contact" class="px-4 py-6">Contact us</a>
-        </li>
-      </ul>
-      <!-- End Menu Desktop-->
-      <!-- Start Menu Mobile -->
-      <ul id="menu-mobile" class="absolute w-full top-full bg-white z-50 left-0 pb-6 pt-2 shadow-md md:hidden">
-        <li class="item-menu-mb justify-between items-center px-5 py-3"><a href="#">Home</a></li>
-        <li class="item-menu-mb drop-down-mb flex justify-between items-center px-5 py-3"><a href="#">Solutions</a> <i
-            class='bx bx-chevron-down text-base'></i></li>
-        <li class="item-menu-mb drop-down-content">
-          <nav class="flex flex-col gap-6 px-8 py-6">
-            <a href="#1" class="item-dropdown font-semibold">Technology consulting</a>
-            <a href="#2" class="item-dropdown font-semibold">SmartSoft Solutions</a>
-            <a href="#3" class="item-dropdown font-semibold">Outsource IT Service</a>
-            <a href="#4" class="item-dropdown font-semibold">IT Academy</a>
-            <a href="#5" class="item-dropdown font-semibold">Drone Show Solutions</a>
-            <a href="#6"
-              class="shrink-0 py-2 px-4 self-start max-md:text-sm text-primary font-bold rounded shadow-sm border-primary border">Go
-              to overview</a>
-          </nav>
-        </li>
-        <li class="item-menu-mb flex justify-between items-center px-5 py-3"><a href="#">Case study</a></li>
-        <li class="item-menu-mb flex justify-between items-center px-5 py-3"><a href="#">Contact us</a></li>
-      </ul>
-      <!-- End Menu Mobile -->
-
-
-      <!-- Start: Get in touch -->
-      <div class="flex gap-4 md:gap-6">
-        <button type="button" class="md:flex gap-2 py-2 px-4 rounded justify-center items-center hidden ">
-          <i class='bx bx-world md:text-2xl'></i>
-          <span>EN</span>
-        </button>
-        <button type="button"
-          class="showModal py-2 px-4 bg-primary max-md:text-sm text-white font-bold rounded shadow-md hover:bg-secondary">Get
-          in
-          touch</button>
-        <button type="button" id="toggleMenu" class="md:hidden"><i class='bx bx-menu text-2xl'></i></button>
-      </div>
-      <!-- End: Get in touch -->
-    </nav>
-
-    <!-- START:MEGA MENU -->
-    <div class="mega-menu-content w-full flex absolute shadow hidden z-[9999]">
-      <div class="bg-primary flex-1"></div>
-      <div class="max-w-layout w-full flex shrink-0">
-        <div class="max-w-[400px] md:py-8 md:pr-8 text-sm leading-6 text-white flex flex-col items-start bg-primary">
-          <h2 class="text-3xl font-bold leading-10">Solutions</h2>
-          <p class="mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut
-            labore et dolore magna aliqua.</p>
-          <a href="#" class="btn-border-gradient px-4 py-2 mt-6 font-semibold rounded" tabindex="0">Go to overview</a>
-        </div>
-
-        <div class="md:py-8 md:pl-8 bg-white">
-          <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">SmartSoft Solutions</a>
-              </h2>
-              <p>Enhance and expand your digital investments for optimal growth.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Outsource IT Service</a>
-              </h2>
-              <p>Comprehensive management of applications throughout the entire lifecycle.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">IT Academy</a>
-              </h2>
-              <p>Providing enterprise-standard BA/DA/Dev/Tester course through on-the-job learning.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Drone Show Solutions</a>
-              </h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Technology consulting</a>
-              </h2>
-              <p>Efficiently navigate the dynamic and rapidly evolving world</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bg-white flex-1"></div>
-    </div>
-    <!-- END: MEGA MENU -->
-  </header>
+get_header();
+?>
 
   <main>
     <!-- CONTENT HERE -->
@@ -167,111 +38,127 @@
             <div class="flex gap-5 max-md:flex-col max-md:gap-0">
               <div class="flex flex-col w-[59%] max-md:ml-0 max-md:w-full">
                 <div class="flex flex-col grow max-md:mt-8 max-md:max-w-full">
-                  <a href="#" class="card flex flex-col py-8 px-6 rounded-2xl bg-neutral-800 max-md:p-4 max-md:max-w-full">
-                    <div class="max-md:max-w-full">
-                      <div class="flex gap-5 max-md:flex-col max-md:gap-0">
-                        <div class="flex flex-col w-[42%] max-md:ml-0 max-md:w-full">
-                          <img loading="lazy" src="/assets/img/home/technolochy.png"
-                            class="grow self-stretch w-full aspect-[1.1] object-cover rounded-lg" />
-                        </div>
-                        <div class="flex flex-col ml-5 w-[58%] max-md:ml-0 max-md:w-full">
-                          <div class="flex flex-col grow max-md:mt-8">
-                            <div
-                              class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
-                              <div>01</div>
-                              <div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
-                            </div>
-                            <div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
-                              <div class="flex-1 bg-clip-text title-gradient">Technology consulting</div>
-                              <img loading="lazy"
-                                src="/assets/images/arrow-top-right.svg"
-                                class="shrink-0 self-start mt-2 w-8 aspect-square" />
-                            </div>
-                            <div class="mt-3 text-sm leading-6 text-white">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                              sed do eiusmod tempor incididunt ut labore et dolore
-                              magna aliqua.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
+					<?php
+						// Lấy danh sách các trang đã xuất bản
+						$exclude_pages = array(
+							get_page_by_title('Contact us')->ID,
+							get_page_by_title('Home')->ID,
+							get_page_by_title('Case study')->ID,
+							get_page_by_title('Solutions')->ID,
+						);
+
+						$pages = get_pages(array(
+							'exclude' => $exclude_pages,
+							'sort_column' => 'post_title',
+							'sort_order' => 'asc'
+						));
+
+						$counter = 1;
+
+						foreach ($pages as $page) {
+							// Tạo đường dẫn đến trang
+							$page_link = get_permalink($page->ID);
+							// Lấy tiêu đề và mô tả của trang
+							$title = esc_html($page->post_title);
+							$description = esc_html(get_post_meta($page->ID, '_custom_page_description', true));
+							if ($title == 'Technology Consulting') { ?>
+								<a href="<?php echo esc_url($page_link); ?>" class="card flex flex-col py-8 px-6 rounded-2xl bg-neutral-800 max-md:p-4 max-md:max-w-full">
+									<div class="max-md:max-w-full">
+									<div class="flex gap-5 max-md:flex-col max-md:gap-0">
+										<div class="flex flex-col w-[42%] max-md:ml-0 max-md:w-full">
+										<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/technolochy.png"
+											class="grow self-stretch w-full aspect-[1.1] object-cover rounded-lg" />
+										</div>
+										<div class="flex flex-col ml-5 w-[58%] max-md:ml-0 max-md:w-full">
+										<div class="flex flex-col grow max-md:mt-8">
+											<div
+											class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
+											<div>01</div>
+											<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
+											</div>
+											<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
+											<div class="flex-1 bg-clip-text title-gradient"><?php echo $title; ?></div>
+											<img loading="lazy"
+												src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
+												class="shrink-0 self-start mt-2 w-8 aspect-square" />
+											</div>
+											<div class="mt-3 text-sm leading-6 text-white">
+												<?php echo $description; ?>
+											</div>
+										</div>
+										</div>
+									</div>
+									</div>
+								</a>
+							<?php }
+						} ?>
 
                   <div class="mt-8 max-md:max-w-full">
                     <div class="flex gap-5 max-md:flex-col max-md:gap-0">
-                      <a href="#" class="card flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                        <div
-                          class="flex flex-col grow self-stretch px-6 py-8 mx-auto w-full text-white rounded-2xl bg-neutral-800 max-md:p-4">
-                          <div
-                            class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
-                            <div>02</div>
-                            <div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
-                          </div>
-                          <div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
-                            <div class="flex-1 bg-clip-text title-gradient">SmartSoft Solutions</div>
-                            <img loading="lazy"
-                              src="/assets/images/arrow-top-right.svg"
-                              class="shrink-0 self-start mt-2 w-8 aspect-square" />
-                          </div>
-                          <div class="mt-3 text-sm leading-6 text-white">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#" class="card flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                        <div
-                          class="flex flex-col grow px-6 py-8 mx-auto w-full text-white rounded-2xl bg-neutral-800 max-md:p-4 max-md:mt-8">
-                          <div
-                            class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
-                            <div>03</div>
-                            <div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
-                          </div>
-                          <div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
-                            <div class="flex-1 bg-clip-text title-gradient">Outsource IT Service</div>
-                            <img loading="lazy"
-                              src="/assets/images/arrow-top-right.svg"
-                              class="shrink-0 self-start mt-2 w-8 aspect-square" />
-                          </div>
-                          <div class="mt-3 text-sm leading-6 text-white">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.
-                          </div>
-                        </div>
-                      </a>
+						<?php foreach ($pages as $page) {
+							// Tạo đường dẫn đến trang
+							$page_link = get_permalink($page->ID);
+							// Lấy tiêu đề và mô tả của trang
+							$title = esc_html($page->post_title);
+							$description = esc_html(get_post_meta($page->ID, '_custom_page_description', true));
+							if ($title != 'Technology Consulting' && $title != 'IT Academy') {
+								$counter++; ?>
+								<a href="<?php echo esc_url($page_link); ?>" class="card flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+									<div class="flex flex-col grow self-stretch px-6 py-8 mx-auto w-full text-white rounded-2xl bg-neutral-800 max-md:p-4">
+										<div class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
+											<div><?php echo sprintf('%02d', $counter); ?></div>
+											<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
+										</div>
+										<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
+											<div class="flex-1 bg-clip-text title-gradient"><?php echo $title; ?></div>
+											<img loading="lazy" src="<?php bloginfo('template_directory'); ?>/assets/images/arrow-top-right.svg" class="shrink-0 self-start mt-2 w-8 aspect-square" />
+										</div>
+										<div class="mt-3 text-sm leading-6 text-white">
+											<?php echo $description; ?>
+										</div>
+									</div>
+								</a>
+							<?php }
+						} ?>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="flex flex-col ml-5 w-[41%] max-md:ml-0 max-md:w-full">
-                <a href="#"
-                  class="card flex flex-col grow self-stretch px-6 py-8 w-full text-white rounded-2xl bg-neutral-800 max-md:p-4 max-md:mt-8 max-md:max-w-full">
-                  <img loading="lazy" src="/assets/img/home/it.png" class="w-full aspect-[1.48] max-md:max-w-full object-cover rounded-lg" />
-                  <div
-                    class="flex gap-5 mt-8 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400 max-md:flex-wrap">
-                    <div>04</div>
-                    <div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
-                  </div>
-                  <div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
-                    <div class="flex-1 bg-clip-text title-gradient">IT Academy</div>
-                    <img loading="lazy"
-                      src="/assets/images/arrow-top-right.svg"
-                      class="shrink-0 self-start mt-2 w-8 aspect-square" />
-                  </div>
-                  <div class="mt-3 text-sm leading-6 text-white">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
-                  </div>
-                </a>
+				<?php foreach ($pages as $page) {
+					// Tạo đường dẫn đến trang
+					$page_link = get_permalink($page->ID);
+					// Lấy tiêu đề và mô tả của trang
+					$title = esc_html($page->post_title);
+					$description = esc_html(get_post_meta($page->ID, '_custom_page_description', true));
+					if ($title == 'IT Academy') { ?>
+						<a href="<?php echo esc_url($page_link); ?>"
+						class="card flex flex-col grow self-stretch px-6 py-8 w-full text-white rounded-2xl bg-neutral-800 max-md:p-4 max-md:mt-8 max-md:max-w-full">
+							<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/it.png" class="w-full aspect-[1.48] max-md:max-w-full object-cover rounded-lg" />
+							<div
+								class="flex gap-5 mt-8 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400 max-md:flex-wrap">
+								<div>04</div>
+								<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
+							</div>
+							<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
+								<div class="flex-1 bg-clip-text title-gradient"><?php echo $title; ?></div>
+								<img loading="lazy"
+								src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
+								class="shrink-0 self-start mt-2 w-8 aspect-square" />
+							</div>
+							<div class="mt-3 text-sm leading-6 text-white">
+								<?php echo $description; ?>
+							</div>
+						</a>
+					<?php }
+				} ?>
               </div>
             </div>
           </div>
           <a href="#" class="card px-6 py-8 rounded-2xl bg-neutral-800 max-md:p-4 mt-8">
             <div class="flex gap-5 max-md:flex-col max-md:gap-0">
               <div class="flex flex-col w-[38%] max-md:ml-0 max-md:w-full">
-                <img loading="lazy" src="/assets/img/home/drone.png"
+                <img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/drone.png"
                   class="grow w-full aspect-[1.41] max-md:max-w-full rounded-lg object-cover" />
               </div>
               <div class="flex flex-col ml-5 w-[62%] max-md:ml-0 max-md:w-full">
@@ -284,7 +171,7 @@
                   <div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
                     <div class="flex-1 bg-clip-text title-gradient">Drone Show Solution</div>
                     <img loading="lazy"
-                      src="/assets/images/arrow-top-right.svg"
+                      src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
                       class="shrink-0 self-start mt-2 w-8 aspect-square" />
                   </div>
                   <div class="mt-3 text-sm leading-6 text-white">
@@ -361,135 +248,39 @@
 
         <div class="mt-16 max-md:mt-8 max-md:max-w-full">
           <div class="flex flex-nowrap gap-5 overflow-x-auto max-md:pb-2">
-            <article class="flex flex-col flex-1 max-md:flex-0 min-w-[320px]  max-md:ml-0 max-md:w-full">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/880bf8471753e76bdacaf899d1f98277718b14948f5242edc3fc619760430467?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Ba hiểu lầm phổ biến về chế độ tuyển dụng trọn đời ở Nhật Bản" class="w-full aspect-[1.56]" />
-              <span
-                class="justify-center self-start px-2 py-1 mt-4 text-xs font-bold leading-5 whitespace-nowrap bg-lime-200 rounded">Education</span>
-              <h2 class="mt-4 text-base font-bold">
-                <a href="#" class="hover:underline hover:text-secondary">
-                  Ba hiểu lầm phổ biến về chế độ tuyển dụng trọn đời ở Nhật Bản
-                </a>
-              </h2>
-              <p class="mt-4 text-sm text-neutral-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-            </article>
-            <article class="flex flex-col flex-1 max-md:flex-0 min-w-[320px] max-md:ml-0 max-md:w-full">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/5df021f066b577de0333183de9f4df73c67e20bf242789f9eb1c9bd5d018bdc1?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Ba hiểu lầm phổ biến về chế độ tuyển dụng trọn đời ở Nhật Bản" class="w-full aspect-[1.56]" />
-              <span
-                class="justify-center self-start px-2 py-1 mt-4 text-xs font-bold leading-5 whitespace-nowrap bg-lime-200 rounded">Education</span>
-              <h2 class="mt-4 text-base font-bold">
-                <a href="#" class="hover:underline hover:text-secondary">
-                  Ba hiểu lầm phổ biến về chế độ tuyển dụng trọn đời ở Nhật Bản
-                </a>
-              </h2>
-              <p class="mt-4 text-sm text-neutral-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-            </article>
-            <article class="flex flex-col flex-1 max-md:flex-0 min-w-[320px] max-md:ml-0 max-md:w-full">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/cf2704fafa99182868af1f5050e6042b8a1fcec1937adb413b172adc6a44b66c?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Ba hiểu lầm phổ biến về chế độ tuyển dụng trọn đời ở Nhật Bản" class="w-full aspect-[1.56]" />
-              <span
-                class="justify-center self-start px-2 py-1 mt-4 text-xs font-bold leading-5 whitespace-nowrap bg-lime-200 rounded">Education</span>
-              <h2 class="mt-4 text-base font-bold">
-                <a href="#" class="hover:underline hover:text-secondary">
-                  Ba hiểu lầm phổ biến về chế độ tuyển dụng trọn đời ở Nhật Bản
-                </a>
-              </h2>
-              <p class="mt-4 text-sm text-neutral-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-            </article>
+		  	<?php
+				// Tạo một đối tượng WP_Query với các tham số bạn muốn
+				$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+				$query = new WP_Query(array(
+					'post_type' => 'post',
+					'posts_per_page' => 3,
+					'orderby' => 'date',
+					'order' => 'DESC',
+					'paged' => $paged
+				));
+
+				// Kiểm tra nếu có bài viết
+				if ($query->have_posts()) :
+					while ($query->have_posts()) : $query->the_post(); ?>
+						<article class="flex flex-col flex-1 max-md:flex-0 min-w-[320px]  max-md:ml-0 max-md:w-full">
+							<?php echo get_the_post_thumbnail(get_the_id(), 'full', array('class' => 'w-full aspect-[1.56] rounded-lg', 'alt' => 'Ba hiểu lầm phổ biến về chế độ tuyển dụng trọn đời ở Nhật Bản')); ?>
+							<span
+								class="justify-center self-start px-2 py-1 mt-4 text-xs font-bold leading-5 whitespace-nowrap bg-lime-200 rounded">Education</span>
+							<h2 class="mt-4 text-base font-bold">
+								<a href="<?php the_permalink(); ?>" class="hover:underline hover:text-secondary">
+									<?php the_title(); ?>
+								</a>
+							</h2>
+							<p class="mt-4 text-sm text-neutral-400"><?php the_excerpt(); ?></p>
+						</article>
+					<?php endwhile;
+					wp_reset_postdata(); // Đặt lại dữ liệu bài viết
+				endif;
+				?>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="flex flex-col items-center py-12 max-md:px-5 bg-primary w-full">
-    <div class="max-w-layout mx-auto w-full">
-      <a href="#" class="block uppercase text-[40px] mb-8 font-extrabold text-white font-['Baloo']">FOURIER.Inc</a>
-      <div class="flex max-md:flex-col gap-8">
-        <aside class="flex flex-col flex-1">
-          <div class="flex flex-col grow text-sm leading-6 text-white">
-            <div class="flex gap-4">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/1d43e9bb5ef6ba263ca99fd55bda09ef5fc95ca2ffaaa022ec2ca7dad91d1179?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Location Icon" class="shrink-0 my-auto w-5 aspect-square" />
-              <p>117 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội</p>
-            </div>
-            <div class="flex gap-4 mt-4 whitespace-nowrap">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/e3b040a4f8c506f01d127f6b020d1f1277a762180d7ef10871fbace0bdf1565b?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Email Icon" class="shrink-0 my-auto w-5 aspect-square" />
-              <p>contact@apec.com.vn</p>
-            </div>
-            <div class="flex gap-4 mt-4">
-              <img loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6df5da042d478cb43f8fe745edc7ece670b62a3f0d295b7a15c4bf098cbd9e97?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
-                alt="Phone Icon" class="shrink-0 my-auto w-5 aspect-square" />
-              <p>1900 000 000</p>
-            </div>
-          </div>
-        </aside>
-        <div class="justify-end self-stretch max-md:max-w-full">
-          <div class="flex gap-5 max-md:gap-0 justify-between">
-            <a href="#" class="text-sm text-nowrap font-semibold leading-6 text-white">Home</a>
-            <a href="#" class="text-sm text-nowrap font-semibold leading-6 text-white">Solutions</a>
-            <a href="#" class="text-sm text-nowrap font-semibold leading-6 text-white">Case study</a>
-            <a href="#" class="text-sm text-nowrap font-semibold leading-6 text-white">Contact us</a>
-          </div>
-        </div>
-      </div>
-      <hr class="mt-16 h-px bg-white w-full">
-      <div class="flex justify-between gap-5 mt-8 w-full">
-        <p class="flex-1 text-sm leading-6 text-white">Copyright © 2024 Fourier.Inc</p>
-        <div class="flex gap-4">
-          <a href="#">
-            <i class='bx bxl-facebook-circle text-white text-lg md:text-2xl'></i>
-          </a>
-          <a href="#">
-            <i class='bx bxl-linkedin-square text-white text-lg md:text-2xl'></i>
-          </a>
-          <a href="#">
-            <i class='bx bxl-github text-white text-lg md:text-2xl'></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- MODAL -->
-  <section id="modalSupport"
-    class="hidden fixed top-0 left-0 h-screen w-full p-5 z-[9998] bg-primary/50 flex justify-center items-center">
-    <div class="max-w-[800px] w-full bg-white rounded-lg shadow-md flex flex-col p-8 text-sm leading-6 max-md:px-5">
-      <div class="flex justify-between items-start">
-        <h1 class="text-5xl font-bold leading-[72px] leading-10 text-primary max-w-full max-md:text-2xl">How can we help
-          you?</h1>
-        <button type="button" id="closeModal"><i class='bx bx-x text-3xl'></i></button>
-      </div>
-      <p class="mt-2.5 text-base leading-6 text-primary max-md:max-w-full">Fill customer's information</p>
-      <form class="flex flex-col mt-8">
-        <input type="text" id="name" name="name" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-          placeholder="Enter your name" aria-label="Name" required>
-        <input type="email" id="email" name="email" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-          placeholder="Enter your email" aria-label="Email" required>
-        <input type="text" id="company" name="company" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-          placeholder="Enter your company name" aria-label="Company" required>
-        <textarea id="message" name="message" rows="4" class="px-4 pt-3 pb-8 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-          placeholder="Enter your message" aria-label="Message"></textarea>
-        <button type="submit"
-          class="py-2 px-4 mt-6 bg-primary max-md:text-sm text-base self-end text-white font-bold rounded shadow-md hover:bg-secondary">Submit</button>
-      </form>
-    </div>
-  </section>
-
-  <script src="/assets/js/tailwind_custom.js"></script>
-  <script src="/assets/js/layout.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-</body>
-
-</html>
+  <?php get_footer(); ?>

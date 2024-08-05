@@ -3,57 +3,6 @@
 get_header();
 ?>
 
-    <!-- START:MEGA MENU -->
-    <div class="mega-menu-content w-full flex absolute shadow hidden z-[9999]">
-      <div class="bg-primary flex-1"></div>
-      <div class="max-w-layout w-full flex shrink-0">
-        <div class="max-w-[400px] md:py-8 md:pr-8 text-sm leading-6 text-white flex flex-col items-start bg-primary">
-          <h2 class="text-3xl font-bold leading-10">Solutions</h2>
-          <p class="mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut
-            labore et dolore magna aliqua.</p>
-          <a href="#" class="btn-border-gradient px-4 py-2 mt-6 font-semibold rounded" tabindex="0">Go to overview</a>
-        </div>
-
-        <div class="md:py-8 md:pl-8 bg-white">
-          <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">SmartSoft Solutions</a>
-              </h2>
-              <p>Enhance and expand your digital investments for optimal growth.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Outsource IT Service</a>
-              </h2>
-              <p>Comprehensive management of applications throughout the entire lifecycle.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">IT Academy</a>
-              </h2>
-              <p>Providing enterprise-standard BA/DA/Dev/Tester course through on-the-job learning.</p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Drone Show Solutions</a>
-              </h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, </p>
-            </div>
-            <div>
-              <h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
-                <a href="#">Technology consulting</a>
-              </h2>
-              <p>Efficiently navigate the dynamic and rapidly evolving world</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bg-white flex-1"></div>
-    </div>
-    <!-- END: MEGA MENU -->
-  </header>
   <main>
     <section class="md:py-20 py-16 max-md:px-5">
       <div class="flex self-stretch leading-[150%] max-md:flex-wrap mx-auto max-w-layout max-md:text-center">
@@ -72,14 +21,13 @@ get_header();
       </div>
 
 	  	<div class="self-stretch mt-16">
-			<div id="cards-container"
-				class="grid grid-cols-1 gap-10 max-md:flex-col max-w-layout w-full mx-auto">
+		  	<div id="cards-container" class="grid md:grid-cols-3 grid-cols-1 gap-10 max-md:flex-col max-w-layout w-full mx-auto">
 				<?php
 				// Tạo một đối tượng WP_Query với các tham số bạn muốn
 				$paged = get_query_var('paged') ? get_query_var('paged') : 1;
 				$query = new WP_Query(array(
 					'post_type' => 'post',
-					'posts_per_page' => 5,
+					'posts_per_page' => 12,
 					'orderby' => 'date',
 					'order' => 'DESC',
 					'paged' => $paged
@@ -88,11 +36,18 @@ get_header();
 				// Kiểm tra nếu có bài viết
 				if ($query->have_posts()) :
 					while ($query->have_posts()) : $query->the_post(); ?>
-						<div class="card flex ml-5 mr-5">
-							<a href="<?php the_permalink(); ?>"><?php echo get_the_post_thumbnail(get_the_id(), 'full', array('class' => 'thumnail')); ?></a>
-							<div class="post-content ml-4">
-								<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-								<div class="post-excerpt"><?php the_excerpt(); ?></div>
+						<div class="flex flex-col max-md:ml-0 max-md:w-full">
+							<div class="flex flex-col font-semibold text-primary md:mb-16">
+								<?php echo get_the_post_thumbnail(get_the_id(), 'full', array('class' => 'w-full aspect-[1.56] rounded')); ?>
+								<div class="justify-center self-start px-2 py-1 mt-4 text-xs leading-5 whitespace-nowrap bg-[#C3E1A6] rounded-lg">
+									Education
+								</div>
+								<a href="<?php the_permalink(); ?>" class="mt-4 text-base leading-6 text-ellipsis hover:text-secondary hover:underline active:text-secondary active:underline">
+									<?php the_title(); ?>
+								</a>
+								<div class="mt-4 text-sm leading-6 text-[#A6A5A5]">
+									<?php the_excerpt(); ?>
+								</div>
 							</div>
 						</div>
 					<?php endwhile;
