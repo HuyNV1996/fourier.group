@@ -1,39 +1,57 @@
 <?php
 /* Template Name: Overview Page */
 
+if (is_page()) {
+    $page_id = get_the_ID();
+    $custom_data = get_post_meta($page_id, 'custom_data', true) ?: [];
+	usort($custom_data, function($a, $b) {
+		return ($a['index'] <=> $b['index']);
+	});
+}
 get_header();
 ?>
 
   <main>
     <!-- CONTENT HERE -->
     <section class="w-full relative overflow-hidden">
-      <img src="https://placehold.co/1440x720" alt="bg"
-        class="absolute top-0 left-0 shrink-0 w-full h-full object-cover">
+		<?php if (!empty($custom_data)) : ?>
+			<?php if (isset($custom_data[0]['value'])) : ?>
+				<img src="<?php echo esc_url($custom_data[0]['value']); ?>" alt="bg"
+        		class="absolute top-0 left-0 shrink-0 w-full h-full object-cover">
+			<?php endif; ?>
+		<?php endif; ?>
       <div
         class="max-w-layout mx-auto min-h-[720px] max-md:min-h-[500px] flex flex-col justify-center relative gap-6 text-white max-md:py-16 max-md:px-5 ">
-        <h1 class="text-[56px] max-md:text-[32px] font-extrabold">Leverage transformative IT solutions to drive your
-          business
-          expansion
-        </h1>
-        <p class="max-w-[720px] self-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-          esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-          officia deserunt mollit anim id est laborum.</p>
+		<?php if (!empty($custom_data)) : ?>
+			<?php if (isset($custom_data[1]['value'])) : ?>
+				<h1 class="text-[56px] max-md:text-[32px] font-extrabold">
+					<?php echo wp_kses_post($custom_data[1]['value']); ?>
+				</h1>
+			<?php endif; ?>
+			<?php if (isset($custom_data[2]['value'])) : ?>
+				<p class="max-w-[720px] self-start">
+					<?php echo wp_kses_post($custom_data[2]['value']); ?>
+				</p>
+			<?php endif; ?>
+		<?php endif; ?>
       </div>
     </section>
 
     <section>
       <div class="flex justify-center items-center px-16 py-20 bg-stone-950 max-md:px-5">
         <div class="flex flex-col text-white mt-20 w-full max-w-[1208px] max-md:mt-10 max-md:max-w-full">
-          <div class="text-6xl text-center font-semibold leading-[84px] max-md:max-w-full max-md:text-4xl">
-            Our solutions
-          </div>
-          <div class="mt-6 text-base text-center leading-6 text-white max-md:max-w-full">
-            Our company specialize in training IT future generation, offering application engineer, providing
-            maintenance, support and technology consulting services tailored to meet the unique needs of both startups
-            and established enterprises.
-          </div>
+			<?php if (!empty($custom_data)) : ?>
+				<?php if (isset($custom_data[3]['value'])) : ?>
+					<div class="text-6xl text-center font-semibold leading-[84px] max-md:max-w-full max-md:text-4xl">
+						<?php echo wp_kses_post($custom_data[3]['value']); ?>
+					</div>
+				<?php endif; ?>
+				<?php if (isset($custom_data[4]['value'])) : ?>
+					<div class="mt-6 text-base text-center leading-6 text-white max-md:max-w-full">
+						<?php echo wp_kses_post($custom_data[4]['value']); ?>
+					</div>
+				<?php endif; ?>
+			<?php endif; ?>
           <div class="mt-12 max-md:mt-10 max-md:max-w-full">
             <div class="flex gap-5 max-md:flex-col max-md:gap-0">
               <div class="flex flex-col w-[59%] max-md:ml-0 max-md:w-full">
@@ -276,7 +294,7 @@ get_header();
 					<?php endwhile;
 					wp_reset_postdata(); // Đặt lại dữ liệu bài viết
 				endif;
-				?>
+			?>
           </div>
         </div>
       </div>

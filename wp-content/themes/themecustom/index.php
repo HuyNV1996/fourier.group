@@ -4,8 +4,10 @@
 $homepage = get_page_by_title('Home');
 if ($homepage) {
     $page_id = $homepage->ID;
-	$custom_texts = get_post_meta($page_id, 'custom_texts', true) ?: array();
-	$custom_image = get_post_meta($page_id, 'custom_image_urls', true) ?: array();
+	$custom_data = get_post_meta($page_id, 'custom_data', true) ?: [];
+	usort($custom_data, function($a, $b) {
+		return ($a['index'] <=> $b['index']);
+	});
 }
 
 get_header();
@@ -19,20 +21,19 @@ get_header();
 						<div class="flex flex-col w-[54%] max-md:ml-0 max-md:w-full">
 							<div
 								class=" font-bold text-secondary max-md:max-w-full md:text-[56px] text-[32px] md:text-start text-center">
-								<?php if (!empty($custom_texts)) : ?>
-									<span class="text-primary">
-										"<?php echo wp_kses_post($custom_texts[0]); ?>
-										<span class="text-secondary">
-											<?php echo wp_kses_post($custom_texts[1]); ?></span>"
-									</span>
-								<?php endif; ?>
+									<?php if (!empty($custom_data)) : ?>
+										<?php if (isset($custom_data[0]['value'])) : ?>
+											<span class="text-primary">"<?php echo $custom_data[0]['value'] ?><span class="text-secondary"> <?php echo $custom_data[1]['value'] ?></span>"
+											</span>
+										<?php endif; ?>
+									<?php endif; ?>
 							</div>
 						</div>
 						<div class="flex flex-col ml-5 w-[46%] max-md:ml-0 max-md:w-full">
-							<?php if (!empty($custom_texts)) : ?>
-								<?php if (isset($custom_texts[0])) : ?>
+							<?php if (!empty($custom_data)) : ?>
+								<?php if (isset($custom_data[2]['value'])) : ?>
 									<div class="self-stretch my-auto text-base leading-6 text-primary max-md:mt-8 max-md:max-w-full md:text-start text-center">
-										<?php echo wpautop($custom_texts[2]); ?>
+										<?php echo wpautop($custom_data[2]['value']); ?>
 									</div>
 								<?php endif; ?>
 							<?php endif; ?>
@@ -46,16 +47,20 @@ get_header();
 
 			<div
 				class="flex overflow-hidden relative flex-col justify-center items-start px-16 py-20 min-h-[560px] max-md:px-5 max-md:py-16">
-				<?php if (!empty($custom_image)) : ?>
-					<img loading="lazy" src="<?php echo esc_url($custom_image[0]); ?>" class="object-cover absolute inset-0 size-full" />
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[2]['value'])) : ?>
+						<img loading="lazy" src="<?php echo esc_url($custom_data[3]['value']); ?>" class="object-cover absolute inset-0 size-full" />
+					<?php endif; ?>
 				<?php endif; ?>
 				<div class="flex relative flex-col mt-7 ml-0 md:ml-14 max-w-full">
-					<?php if (!empty($custom_texts)) : ?>
+					<?php if (!empty($custom_data)) : ?>
+						<?php if (isset($custom_data[4]['value'])) : ?>
 						<div class="text-[32px] w-[80%] md:w-[50%] font-bold text-white max-md:max-w-full md:text-[56px]">
-						&quot;<?php echo wp_kses_post($custom_texts[3]); ?>
-							<span class="text-secondary"><?php echo wp_kses_post($custom_texts[4]); ?></span>.&quot;
+						&quot;<?php echo $custom_data[4]['value']; ?>
+							<span class="text-secondary"><?php echo $custom_data[5]['value']; ?></span>.&quot;
 						</div>
-						<div class="mt-6 text-base leading-6 text-white max-md:max-w-full w-full md:w-[65%]"><?php echo wp_kses_post($custom_texts[5]); ?></div>
+						<div class="mt-6 text-base leading-6 text-white max-md:max-w-full w-full md:w-[65%]"><?php echo $custom_data[6]['value']; ?></div>
+						<?php endif; ?>
 					<?php endif; ?>
 				</div>
 			</div>

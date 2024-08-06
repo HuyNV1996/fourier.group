@@ -2,8 +2,10 @@
 /* Template Name: Solutions Page */
 if (is_page()) {
     $page_id = get_the_ID();
-    $custom_texts = get_post_meta($page_id, 'custom_texts', true) ?: array();
-	$custom_image = get_post_meta($page_id, 'custom_image_urls', true) ?: array();
+    $custom_data = get_post_meta($page_id, 'custom_data', true) ?: [];
+	usort($custom_data, function($a, $b) {
+		return ($a['index'] <=> $b['index']);
+	});
 }
 get_header();
 ?>
@@ -11,8 +13,10 @@ get_header();
   <main>
     <section class="relative">
       <div class="min-h-[560px] w-full overflow-hidden relative">
-	  	<?php if (!empty($custom_image)) : ?>
-			<img src="<?php echo esc_url($custom_image[0]); ?>" alt="bg" class="absolute w-full h-full object-cover">
+		<?php if (!empty($custom_data)) : ?>
+			<?php if (isset($custom_data[0]['value'])) : ?>
+				<img src="<?php echo esc_url($custom_data[0]['value']); ?>" alt="bg" class="absolute w-full h-full object-cover">
+			<?php endif; ?>
 		<?php endif; ?>
       </div>
       <div class="min-h-[160px] bg-white"></div>
@@ -27,13 +31,17 @@ get_header();
                   <span>/</span>
                   <span class="text-primary">IT Academy</span>
                 </nav>
-                <h1 class="mt-6 text-6xl font-bold leading-[84px] max-md:max-w-full max-md:text-4xl">
-                  IT Academy
-                </h1>
-				<?php if (!empty($custom_texts)) : ?>
-					<p class="mt-6 text-base max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[0]); ?>
-					</p>
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[1]['value'])) : ?>
+						<h1 class="mt-6 text-6xl font-bold leading-[84px] max-md:max-w-full max-md:text-4xl">
+							<?php echo $custom_data[1]['value'] ?>
+						</h1>
+					<?php endif; ?>
+					<?php if (isset($custom_data[2]['value'])) : ?>
+						<p class="mt-6 text-base max-md:max-w-full">
+							<?php echo wp_kses_post($custom_data[2]['value']); ?>
+						</p>
+					<?php endif ?>
 				<?php endif; ?>
               </div>
             </div>
@@ -46,18 +54,24 @@ get_header();
     <section>
       <div
         class="flex overflow-hidden relative flex-col justify-center items-center px-16 py-20 font-semibold min-h-[480px] max-md:px-5">
-		<?php if (!empty($custom_image)) : ?>
-			<img loading="lazy" src="<?php echo esc_url($custom_image[1]); ?>" class="object-cover absolute inset-0 size-full" />
+		<?php if (!empty($custom_data)) : ?>
+			<?php if (isset($custom_data[3]['value'])) : ?>
+				<img loading="lazy" src="<?php echo esc_url($custom_data[3]['value']); ?>" class="object-cover absolute inset-0 size-full" />
+			<?php endif; ?>
 		<?php endif; ?>
         <div
           class="flex relative flex-col justify-center items-center p-10 w-full rounded-lg backdrop-blur-[2px] bg-white bg-opacity-80 max-w-layout max-md:px-5 max-md:max-w-full">
-		  	<?php if (!empty($custom_texts)) : ?>
-				<div class="text-6xl font-bold text-center text-[#56A012] leading-[84px] max-md:max-w-full max-md:text-4xl">
-					<?php echo wp_kses_post($custom_texts[1]); ?>
-				</div>
-				<div class="self-stretch mt-6 text-xl leading-7 text-center text-stone-950 max-md:max-w-full">
-					<?php echo wp_kses_post($custom_texts[2]); ?>
-				</div>
+		  	<?php if (!empty($custom_data)) : ?>
+				<?php if (isset($custom_data[4]['value'])) : ?>
+					<div class="text-6xl font-bold text-center text-[#56A012] leading-[84px] max-md:max-w-full max-md:text-4xl">
+						<?php echo wp_kses_post($custom_data[4]['value']); ?>
+					</div>
+				<?php endif; ?>
+				<?php if (isset($custom_data[5]['value'])) : ?>
+					<div class="self-stretch mt-6 text-xl leading-7 text-center text-stone-950 max-md:max-w-full">
+						<?php echo wp_kses_post($custom_data[5]['value']); ?>
+					</div>
+				<?php endif; ?>
 			<?php endif; ?>
           <button type="button"
             class="showModal flex gap-2 justify-center px-4 py-2 mt-8 text-sm leading-6 text-white rounded border border-lime-600 border-solid shadow bg-stone-950">

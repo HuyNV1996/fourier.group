@@ -13,7 +13,7 @@ get_header();
 
 	  	<div class="self-stretch mt-16">
 			<div id="cards-container"
-				class="grid grid-cols-1 gap-10 max-md:flex-col max-w-layout w-full mx-auto">
+				class="grid md:grid-cols-3 grid-cols-1 gap-10 max-md:flex-col max-w-layout w-full mx-auto">
 				<?php
 				// Tạo một đối tượng WP_Query với các tham số bạn muốn
 				$paged = get_query_var('paged') ? get_query_var('paged') : 1;
@@ -30,9 +30,19 @@ get_header();
 				// Kiểm tra nếu có bài viết
 				if ($query->have_posts()) :
 					while ($query->have_posts()) : $query->the_post(); ?>
-						<div class="card">
-							<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-							<div class="post-excerpt"><?php the_excerpt(); ?></div>
+						<div class="flex flex-col max-md:ml-0 max-md:w-full">
+							<div class="flex flex-col font-semibold text-primary md:mb-16">
+								<?php echo get_the_post_thumbnail(get_the_id(), 'full', array('class' => 'w-full aspect-[1.56] rounded')); ?>
+								<div class="justify-center self-start px-2 py-1 mt-4 text-xs leading-5 whitespace-nowrap bg-[#C3E1A6] rounded-lg">
+									Education
+								</div>
+								<a href="<?php the_permalink(); ?>" class="mt-4 text-base leading-6 text-ellipsis hover:text-secondary hover:underline active:text-secondary active:underline">
+									<?php the_title(); ?>
+								</a>
+								<div class="mt-4 text-sm leading-6 text-[#A6A5A5]">
+									<?php the_excerpt(); ?>
+								</div>
+							</div>
 						</div>
 					<?php endwhile;
 					wp_reset_postdata(); // Đặt lại dữ liệu bài viết

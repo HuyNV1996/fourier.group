@@ -3,17 +3,21 @@
 
 if (is_page()) {
     $page_id = get_the_ID();
-    $custom_texts = get_post_meta($page_id, 'custom_texts', true) ?: array();
-	$custom_image = get_post_meta($page_id, 'custom_image_urls', true) ?: array();
+    $custom_data = get_post_meta($page_id, 'custom_data', true) ?: [];
 	$slider_data = get_post_meta($page_id, 'slider_data', true) ?: array();
+	usort($custom_data, function($a, $b) {
+		return ($a['index'] <=> $b['index']);
+	});
 }
 get_header();
 ?>
   <main>
     <section class="relative">
       <div class="min-h-[560px] w-full overflow-hidden relative">
-	  	<?php if (!empty($custom_image)) : ?>
-			<img src="<?php echo esc_url($custom_image[0]); ?>" alt="bg" class="absolute w-full h-full object-cover">
+	  	<?php if (!empty($custom_data)) : ?>
+			<?php if (isset($custom_data[0]['value'])) : ?>
+				<img src="<?php echo esc_url($custom_data[0]['value']); ?>" alt="bg" class="absolute w-full h-full object-cover">
+			<?php endif; ?>
 		<?php endif; ?>
       </div>
       <div class="min-h-[160px] bg-white"></div>
@@ -28,13 +32,17 @@ get_header();
                   <span>/</span>
                   <span class="text-primary">Technology consulting</span>
                 </nav>
-				<?php if (!empty($custom_texts)) : ?>
-					<h1 class="mt-6 text-6xl font-bold leading-[84px] max-md:max-w-full max-md:text-4xl">
-						<?php echo wp_kses_post($custom_texts[0]); ?>
-					</h1>
-					<p class="mt-6 text-base max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[1]); ?>
-					</p>
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[1]['value'])) : ?>
+						<h1 class="mt-6 text-6xl font-bold leading-[84px] max-md:max-w-full max-md:text-4xl">
+							<?php echo wp_kses_post($custom_data[1]['value']); ?>
+						</h1>
+					<?php endif; ?>
+					<?php if (isset($custom_data[2]['value'])) : ?>
+						<p class="mt-6 text-base max-md:max-w-full">
+							<?php echo wp_kses_post($custom_data[2]['value']); ?>
+						</p>
+					<?php endif; ?>
 				<?php endif; ?>
               </div>
             </div>
@@ -47,16 +55,20 @@ get_header();
     </section>
 
     <section class="w-full relative overflow-hidden">
-		<?php if (!empty($custom_image)) : ?>
-			<img src="<?php echo esc_url($custom_image[1]); ?>" alt="bg" class="absolute top-0 left-0 shrink-0 w-full h-full object-cover">
+		<?php if (!empty($custom_data)) : ?>
+			<?php if (isset($custom_data[3]['value'])) : ?>
+				<img src="<?php echo esc_url($custom_data[3]['value']); ?>" alt="bg" class="absolute top-0 left-0 shrink-0 w-full h-full object-cover">
+			<?php endif; ?>
 		<?php endif; ?>
       <div
         class="max-w-layout mx-auto min-h-[440px] max-md:min-h-[300px] w-full flex items-center max-md:items-start relative gap-8 max-md:py-16 max-md:px-5">
         <div class="w-1/2 max-md:w-full flex flex-col gap-8">
-			<?php if (!empty($custom_texts)) : ?>
-				<p class="text-base">
-					<?php echo wp_kses_post($custom_texts[2]); ?>
-				</p>
+			<?php if (!empty($custom_data)) : ?>
+				<?php if (isset($custom_data[4]['value'])) : ?>
+					<p class="text-base">
+						<?php echo wp_kses_post($custom_data[4]['value']); ?>
+					</p>
+				<?php endif; ?>
 			<?php endif; ?>
           <button type="button"
             class="flex gap-2 self-start justify-center items-center px-4 py-2 text-base max-md:text-sm font-semibold leading-6 text-white rounded border-gradient shadow">
@@ -72,22 +84,28 @@ get_header();
           <div class="flex gap-20 max-md:flex-col max-md:gap-0 py-20 max-md:py-0">
             <article class="flex flex-col max-md:ml-0 w-full">
               <div class="flex flex-col justify-center self-stretch my-auto max-md:max-w-full">
-				<?php if (!empty($custom_texts)) : ?>
-					<h2 class="text-4xl max-md:text-[32px] font-extrabold text-primary max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[3]); ?>
-					</h2>
-					<p
-					class="justify-center p-10 mt-12 text-xl font-medium leading-7 border-2 border-secondary border-solid text-primary max-md:px-5 max-md:mt-8 max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[4]); ?>
-					</p>
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[5]['value'])) : ?>
+						<h2 class="text-4xl max-md:text-[32px] font-extrabold text-primary max-md:max-w-full">
+							<?php echo wp_kses_post($custom_data[5]['value']); ?>
+						</h2>
+					<?php endif; ?>
+					<?php if (isset($custom_data[6]['value'])) : ?>
+						<p
+						class="justify-center p-10 mt-12 text-xl font-medium leading-7 border-2 border-secondary border-solid text-primary max-md:px-5 max-md:mt-8 max-md:max-w-full">
+							<?php echo wp_kses_post($custom_data[6]['value']); ?>
+						</p>
+					<?php endif; ?>
 				<?php endif; ?>
               </div>
             </article>
             <aside class="flex flex-col w-6/12 shrink-0 max-md:ml-0 max-md:w-full">
               <figure
                 class="flex flex-col pl-10 pt-10 max-md:pl-6 max-md:pt-6 w-full rounded-2xl bg-zinc-100 max-md:mt-16 max-md:max-w-full">
-				<?php if (!empty($custom_image)) : ?>
-					<img src="<?php echo esc_url($custom_image[2]); ?>" alt="Illustrative image related to market trends" class="w-full aspect-square max-md:max-w-full">
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[7]['value'])) : ?>
+						<img src="<?php echo esc_url($custom_data[7]['value']); ?>" alt="Illustrative image related to market trends" class="w-full aspect-square max-md:max-w-full">
+					<?php endif; ?>
 				<?php endif; ?>
               </figure>
             </aside>
@@ -100,22 +118,28 @@ get_header();
           <div class="flex flex-row-reverse gap-20 max-md:flex-col max-md:gap-0 py-20 max-md:py-0">
             <article class="flex flex-col max-md:ml-0 w-full">
               <div class="flex flex-col justify-center self-stretch my-auto max-md:max-w-full">
-			  	<?php if (!empty($custom_texts)) : ?>
-					<h2 class="text-4xl max-md:text-[32px] font-extrabold text-primary max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[5]); ?>
-					</h2>
-					<p
-					class="justify-center p-10 mt-12 text-xl font-medium leading-7 border-2 border-secondary border-solid text-primary max-md:px-5 max-md:mt-8 max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[6]); ?>
-					</p>
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[8]['value'])) : ?>
+						<h2 class="text-4xl max-md:text-[32px] font-extrabold text-primary max-md:max-w-full">
+							<?php echo wp_kses_post($custom_data[8]['value']); ?>
+						</h2>
+					<?php endif; ?>
+					<?php if (isset($custom_data[9]['value'])) : ?>
+						<p
+						class="justify-center p-10 mt-12 text-xl font-medium leading-7 border-2 border-secondary border-solid text-primary max-md:px-5 max-md:mt-8 max-md:max-w-full">
+							<?php echo wp_kses_post($custom_data[9]['value']); ?>
+						</p>
+					<?php endif; ?>
 				<?php endif; ?>
               </div>
             </article>
             <aside class="flex flex-col w-6/12 shrink-0 max-md:ml-0 max-md:w-full">
               <figure
                 class="flex flex-col pr-10 pt-10 max-md:pr-6 max-md:pt-6 max-md:pt-6 w-full rounded-2xl overflow-hidden bg-white max-md:mt-10 max-md:max-w-full">
-				<?php if (!empty($custom_image)) : ?>
-					<img src="<?php echo esc_url($custom_image[3]); ?>" alt="Illustrative image related to market trends" class="w-full aspect-square max-md:max-w-full object-cover">
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[10]['value'])) : ?>
+						<img src="<?php echo esc_url($custom_data[10]['value']); ?>" alt="Illustrative image related to market trends" class="w-full aspect-square max-md:max-w-full object-cover">
+					<?php endif; ?>
 				<?php endif; ?>
               </figure>
             </aside>
@@ -128,22 +152,28 @@ get_header();
           <div class="flex gap-20 max-md:flex-col max-md:gap-0 py-20 max-md:py-0">
             <article class="flex flex-col max-md:ml-0 w-full">
               <div class="flex flex-col justify-center self-stretch my-auto max-md:max-w-full">
-			  	<?php if (!empty($custom_texts)) : ?>
-					<h2 class="text-4xl max-md:text-[32px] font-extrabold text-primary max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[7]); ?>
-					</h2>
-					<p
-					class="justify-center p-10 mt-12 text-xl font-medium leading-7 border-2 border-secondary border-solid text-primary max-md:px-5 max-md:mt-8 max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[8]); ?>
-					</p>
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[11]['value'])) : ?>
+						<h2 class="text-4xl max-md:text-[32px] font-extrabold text-primary max-md:max-w-full">
+							<?php echo wp_kses_post($custom_data[11]['value']); ?>
+						</h2>
+					<?php endif; ?>
+					<?php if (isset($custom_data[12]['value'])) : ?>
+						<p
+						class="justify-center p-10 mt-12 text-xl font-medium leading-7 border-2 border-secondary border-solid text-primary max-md:px-5 max-md:mt-8 max-md:max-w-full">
+							<?php echo wp_kses_post($custom_data[12]['value']); ?>
+						</p>
+					<?php endif; ?>
 				<?php endif; ?>
               </div>
             </article>
             <aside class="flex flex-col w-6/12 shrink-0 max-md:ml-0 max-md:w-full">
               <figure
                 class="flex flex-col pl-10 pt-10 max-md:pl-6 max-md:pt-6 w-full rounded-2xl bg-zinc-100 overflow-hidden max-md:mt-10 max-md:max-w-full">
-				<?php if (!empty($custom_image)) : ?>
-					<img src="<?php echo esc_url($custom_image[4]); ?>" alt="Illustrative image related to market trends" class="w-full aspect-square max-md:max-w-full">
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[13]['value'])) : ?>
+						<img src="<?php echo esc_url($custom_data[13]['value']); ?>" alt="Illustrative image related to market trends" class="w-full aspect-square max-md:max-w-full">
+					<?php endif; ?>
 				<?php endif; ?>
               </figure>
             </aside>
@@ -213,34 +243,7 @@ get_header();
             </div>
           </div>
           <div class="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-            <form action="">
-              <div
-                class="flex flex-col grow justify-center text-sm leading-6 rounded-md max-md:mt-10 max-md:max-w-full">
-                <input class="flex gap-1 px-4 py-2.5 whitespace-nowrap rounded bg-zinc-100 max-md:flex-wrap "
-                  placeholder="Name">
-                <!-- <div class="text-neutral-800">Name</div>
-                        <div class="text-orange-700 max-md:max-w-full">*</div> -->
-
-                </input>
-                <input class="flex gap-1 px-4 py-2.5 mt-4 rounded bg-zinc-100 max-md:flex-wrap"
-                  placeholder="E-mail address">
-                <!-- <div class="text-neutral-800">E-mail address</div>
-                        <div class="text-orange-700">*</div> -->
-                </input>
-                <input class="flex gap-1 px-4 py-2.5 mt-4 rounded bg-zinc-100 max-md:flex-wrap"
-                  placeholder="Company name">
-                <!-- <div class="text-neutral-800">Company name</div>
-                        <div class="text-orange-700">*</div> -->
-                </input>
-                <textarea id="message" name="message" rows="3"
-                  class="px-4 pt-3 pb-8 mt-4 rounded bg-zinc-100 max-md:max-w-full" placeholder="Your message"
-                  aria-label="Message"></textarea>
-                <button type=""
-                  class="justify-center self-end px-10 py-3 mt-6 text-base font-semibold leading-6 text-white whitespace-nowrap rounded border border-solid shadow bg-primary border-primary max-md:px-5">
-                  Submit
-                </button>
-              </div>
-            </form>
+		  	<?php echo custom_email_form() ?>
           </div>
         </div>
       </div>

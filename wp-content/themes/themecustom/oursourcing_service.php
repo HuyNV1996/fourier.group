@@ -3,26 +3,34 @@
 
 if (is_page()) {
     $page_id = get_the_ID();
-    $custom_texts = get_post_meta($page_id, 'custom_texts', true) ?: array();
-	$custom_image = get_post_meta($page_id, 'custom_image_urls', true) ?: array();
+    $custom_data = get_post_meta($page_id, 'custom_data', true) ?: [];
 	$slider_data = get_post_meta($page_id, 'slider_data', true) ?: array();
+	usort($custom_data, function($a, $b) {
+		return ($a['index'] <=> $b['index']);
+	});
 }
 get_header();
 ?>
   <main>
     <section class="w-full relative overflow-hidden">
-		<?php if (!empty($custom_image)) : ?>
-			<img src="<?php echo esc_url($custom_image[0]); ?>" alt="bg"
-        	class="absolute top-0 left-0 shrink-0 w-full h-full object-cover">
+		<?php if (!empty($custom_data)) : ?>
+			<?php if (isset($custom_data[0]['value'])) : ?>
+				<img src="<?php echo esc_url($custom_data[0]['value']); ?>" alt="bg"
+				class="absolute top-0 left-0 shrink-0 w-full h-full object-cover">
+			<?php endif; ?>
 		<?php endif; ?>
       <div
         class="max-w-layout mx-auto min-h-[440px] max-md:min-h-[300px] text-white w-full flex items-center max-md:items-start relative gap-8 max-md:py-16 max-md:px-5">
         <div class="w-1/2 max-md:w-full flex flex-col gap-8">
-			<?php if (!empty($custom_texts)) : ?>
-				<h2 class="font-bold md:text-[56px] text-4xl"><?php echo wp_kses_post($custom_texts[0]); ?></h2>
-				<p class="text-base">
-					<?php echo wp_kses_post($custom_texts[1]); ?>
-				</p>
+			<?php if (!empty($custom_data)) : ?>
+				<?php if (isset($custom_data[1]['value'])) : ?>
+					<h2 class="font-bold md:text-[56px] text-4xl"><?php echo wp_kses_post($custom_data[1]['value']); ?></h2>
+				<?php endif; ?>
+				<?php if (isset($custom_data[2]['value'])) : ?>
+					<p class="text-base">
+						<?php echo wp_kses_post($custom_data[2]['value']); ?>
+					</p>
+				<?php endif; ?>
 			<?php endif; ?>
           <button type="button"
             class="flex gap-2 self-start justify-center items-center px-4 py-2 text-base max-md:text-sm font-semibold leading-6 text-white rounded border-gradient shadow">
