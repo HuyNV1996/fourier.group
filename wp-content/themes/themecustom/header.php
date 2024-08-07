@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/reset.css" />
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/style.css" />
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/header.css">
+  <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/itacademy.css">
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/smartsoft.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />

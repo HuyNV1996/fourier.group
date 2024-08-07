@@ -163,7 +163,7 @@ get_header();
           class="flex flex-nowrap overflow-x-auto my-16 text-base font-semibold leading-6 text-center bg-[#F1F1F1] text-neutral-800 max-md:mt-10">
           <!-- RENDER  -->
         </div>
-        <div id="progressDetail" class="relative">
+        <div id="progressDetail" class="relative" data-base-url="<?php echo get_template_directory_uri(); ?>">
           <!-- RENDER -->
         </div>
         </div>

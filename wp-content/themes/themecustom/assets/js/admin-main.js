@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function imgHtml(count) {
 		return `<label for="custom_texts_${count}">Image URL:</label><br>
+			<input type="text" name="position_img[]" id="position_img_${count}" placeholder="Vị trí hiển thị">
 			<input type="text" name="custom_image_urls[]" id="custom_image_url_${count}" class="regular-text">
 			<input type="file" name="custom_image_files[]" id="custom_image_file_${count}">
 			<input type="hidden" name="index_img[]" value="${count}">
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function textHtml(count) {
 		return `<label for="custom_texts_${count}">Text:</label><br>
+			<input type="text" name="position_text[]" id="position_text_${count}" placeholder="Vị trí hiển thị">
 			<textarea name="custom_texts[]" id="custom_texts_${count}" rows="3" class="large-text"></textarea>
 			<input type="hidden" name="index_text[]" value="${count}">
 			<button type="button" class="remove-text-button">Remove</button>

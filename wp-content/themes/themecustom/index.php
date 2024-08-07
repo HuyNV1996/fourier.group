@@ -55,7 +55,7 @@ get_header();
 				<div class="flex relative flex-col mt-7 ml-0 md:ml-14 max-w-full">
 					<?php if (!empty($custom_data)) : ?>
 						<?php if (isset($custom_data[4]['value'])) : ?>
-						<div class="text-[32px] w-[80%] md:w-[50%] font-bold text-white max-md:max-w-full md:text-[56px]">
+						<div class="text-[32px] w-[80%] md:w-[54%] font-bold text-white max-md:max-w-full md:text-[56px]">
 						&quot;<?php echo $custom_data[4]['value']; ?>
 							<span class="text-secondary"><?php echo $custom_data[5]['value']; ?></span>.&quot;
 						</div>

@@ -63,18 +63,7 @@
 				<button type="button" id="closeModal"><i class='bx bx-x text-3xl'></i></button>
 			</div>
 			<p class="mt-2.5 text-base leading-6 text-primary max-md:max-w-full">Fill customer's information</p>
-			<form class="flex flex-col mt-8">
-				<input type="text" id="name" name="name" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-				placeholder="Enter your name" aria-label="Name" required>
-				<input type="email" id="email" name="email" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-				placeholder="Enter your email" aria-label="Email" required>
-				<input type="text" id="company" name="company" class="px-4 py-3 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-				placeholder="Enter your company name" aria-label="Company" required>
-				<textarea id="message" name="message" rows="4" class="px-4 pt-3 pb-8 mt-2 rounded bg-zinc-100 max-md:max-w-full"
-				placeholder="Enter your message" aria-label="Message"></textarea>
-				<button type="submit"
-				class="py-2 px-4 mt-6 bg-primary max-md:text-sm text-base self-end text-white font-bold rounded shadow-md hover:bg-secondary">Submit</button>
-			</form>
+			<?php echo custom_email_form() ?>
 		</div>
 	</section>
 
@@ -85,6 +74,7 @@
 	<script src="<?php bloginfo('template_directory')?>/assets/js/smartsoft.js"></script>
 	<script src="<?php bloginfo('template_directory')?>/assets/js/timeline.js"></script>
 	<script src="<?php bloginfo('template_directory')?>/assets/js/slider.js"></script>
+	<script src="<?php bloginfo('template_directory')?>/assets/js/it_academy.js"></script>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v20.0&appId=346175334287374" nonce="5AGWWsN7"></script>
 </body>

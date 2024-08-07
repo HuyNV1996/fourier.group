@@ -59,13 +59,13 @@ function add_custom_page_meta_box() {
 add_action('add_meta_boxes', 'add_custom_page_meta_box');
 
 function render_custom_page_meta_box($post) {
-	// Lấy từ ĐB
+
 	$custom_logo = get_option('custom_site_logo', '');
 	$custom_data = get_post_meta($post->ID, 'custom_data', true) ?: [];
 	$slider_data = get_post_meta($post->ID, 'slider_data', true) ?: array();
     $description = get_post_meta($post->ID, '_custom_page_description', true);
 
-	// Sắp xếp theo index
+
 	usort($custom_data, function($a, $b) {
 		return ($a['index'] <=> $b['index']);
 	});
@@ -74,7 +74,7 @@ function render_custom_page_meta_box($post) {
 
 	if ($post->post_title === 'Home') : ?>
 		<div class="logo">
-			<label for="custom_logo"><?php _e('Logo (Text or URL):', 'textdomain'); ?></label><br>
+			<label for="custom_logo"><?php _e('Logo:', 'textdomain'); ?></label><br>
 			<input type="text" name="custom_logo" id="custom_logo" value="<?php echo !empty($custom_logo) ?  esc_attr($custom_logo) : ''; ?>" class="regular-text"><br>
 			<input type="file" name="custom_logo">
 		</div>
@@ -84,14 +84,16 @@ function render_custom_page_meta_box($post) {
 		<?php foreach ($custom_data as $entry) : ?>
 			<?php if ($entry['type'] === 'text') : ?>
 				<div class="custom-text-entry" data-index="<?php echo $entry['index']; ?>">
-					<label for="custom_texts_<?php echo $entry['index']; ?>"><?php _e('Text:', 'textdomain'); ?></label><br>
+					<label><?php echo ucwords($entry['position']) ?></label>
+					<input type="hidden" name="position_text[]" id="position_text_${count}" placeholder="Vị trí hiển thị" value="<?php echo $entry['position'] ?>">
 					<textarea name="custom_texts[]" id="custom_texts_<?php echo $entry['index']; ?>" rows="3" class="large-text"><?php echo esc_textarea($entry['value']); ?></textarea>
 					<input type="hidden" name="index_text[]" value="<?php echo $entry['index']; ?>">
 					<br><br>
 				</div>
 			<?php elseif ($entry['type'] === 'image') : ?>
 				<div class="custom-img-entry" data-index="<?php echo $entry['index']; ?>">
-					<label for="custom_image_url_<?php echo $entry['index']; ?>"><?php _e('Image URL:', 'textdomain'); ?></label><br>
+					<label><?php echo ucwords($entry['position']) ?></label>
+					<input type="hidden" name="position_img[]" id="position_img_${count}" placeholder="Vị trí hiển thị" value="<?php echo $entry['position'] ?>">
 					<input type="text" name="custom_image_urls[]" id="custom_image_url_<?php echo $entry['index']; ?>" class="regular-text" value="<?php echo esc_attr($entry['value']); ?>">
 					<input type="hidden" name="index_img[]" value="<?php echo $entry['index']; ?>">
 					<input type="file" name="custom_image_files[]" id="custom_image_file_<?php echo $entry['index']; ?>"><br><br>
@@ -177,7 +179,8 @@ function save_custom_page_meta($post_id) {
 				$custom_data[] = [
 					'type' => 'text',
 					'value' => sanitize_textarea_field($text),
-					'index' => $_POST['index_text'][$index]
+					'index' => $_POST['index_text'][$index],
+					'position' => $_POST['position_text'][$index]
 				];
 			}
 		}
@@ -189,7 +192,8 @@ function save_custom_page_meta($post_id) {
 				$custom_data[] = [
 					'type' => 'image',
 					'value' => esc_url_raw($img_url),
-					'index' => $_POST['index_img'][$index]
+					'index' => $_POST['index_img'][$index],
+					'position' => $_POST['position_img'][$index]
 				];
 			}
 		}
@@ -210,14 +214,15 @@ function save_custom_page_meta($post_id) {
 					$custom_data[] = [
 						'type' => 'image',
 						'value' => $upload['url'],
-						'index' => $_POST['index_img'][$index]
+						'index' => $_POST['index_img'][$index],
+						'position' => $_POST['position_img'][$index]
 					];
 				}
 			}
 		}
 	}
 
-	// Lưu dữ liệu vào cơ sở dữ liệu
+	 // Lưu dữ liệu vào cơ sở dữ liệu
 	update_post_meta($post_id, 'custom_data', $custom_data);
 	error_log('Description: ' . print_r($_POST, true));
 
@@ -343,9 +348,9 @@ function handle_contact_form_submission() {
             );
         }
 
-		// Đóng sesion
-		session_write_close();
+
         // Điều hướng lại trang để tránh gửi lại form khi tải lại
+		session_write_close();
         wp_redirect($_SERVER['REQUEST_URI']);
         exit;
     }
