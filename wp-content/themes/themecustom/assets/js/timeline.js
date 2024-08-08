@@ -94,3 +94,14 @@ function renderTimeline(data) {
 if (Array.isArray(timeLineData) && timeLineData.length > 0) {
 	renderTimeline(timeLineData);
 }
+
+window.addEventListener('load', function () {
+	// Khi toàn bộ trang và tài nguyên đã tải xong, ẩn màn hình loading
+	var loadingScreen = document.getElementById('wap-loading');
+	if (loadingScreen) {
+		loadingScreen.classList.add('hidden');
+		setTimeout(() => {
+			loadingScreen.classList.add('d-none');
+		}, 100);
+	}
+});

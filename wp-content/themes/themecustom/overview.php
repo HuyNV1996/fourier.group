@@ -59,10 +59,10 @@ get_header();
 					<?php
 						// Lấy danh sách các trang đã xuất bản
 						$exclude_pages = array(
-							get_page_by_title('Contact us')->ID,
-							get_page_by_title('Home')->ID,
-							get_page_by_title('Case study')->ID,
-							get_page_by_title('Solutions')->ID,
+							get_page_id_by_title('Contact us'),
+							get_page_id_by_title('Home'),
+							get_page_id_by_title('Case study'),
+							get_page_id_by_title('Solutions'),
 						);
 
 						$pages = get_pages(array(

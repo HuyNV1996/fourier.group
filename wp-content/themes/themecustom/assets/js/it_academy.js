@@ -49,12 +49,15 @@ const strDetail = progressData.map((item, index) => {
 </div>`;
 });
 
-var baseUrl = progressDetail.getAttribute('data-base-url');
-progressContain.innerHTML = strData.join('').toString();
-console.log(baseUrl);
-progressDetail.innerHTML =
-	`<div class="tamgiac absolute w-10 h-10 -top-9 -translate-x-[50%]"><img src="${baseUrl}/assets/img/home/polygon.png" alt="tamgiac"></div>` +
-	strDetail.join('').toString();
+if (progressDetail) {
+	var baseUrl = progressDetail.getAttribute('data-base-url');
+	progressDetail.innerHTML =
+		`<div class="tamgiac absolute w-10 h-10 -top-9 -translate-x-[50%]"><img src="${baseUrl}/assets/img/home/polygon.png" alt="tamgiac"></div>` +
+		strDetail.join('').toString();
+}
+if (progressContain) {
+	progressContain.innerHTML = strData.join('').toString();
+}
 
 const prgDetail = document.querySelectorAll('.prgDetail');
 const itemProgress = document.querySelectorAll('.item-progress');
@@ -63,7 +66,9 @@ const tamgiac = document.querySelector('.tamgiac');
 let spaceItem = 100 / progressData.length; // 20
 let spaceItemBetween = 100 / progressData.length / 2; // 10
 
-tamgiac.style.left = spaceItemBetween + '%';
+if (tamgiac) {
+	tamgiac.style.left = spaceItemBetween + '%';
+}
 
 itemProgress.forEach((item, index) =>
 	item.addEventListener('click', (e) => {

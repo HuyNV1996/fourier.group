@@ -7,7 +7,7 @@ get_header();
     <section class="md:py-20 py-16 max-md:px-5">
       <div class="flex self-stretch leading-[150%] max-md:flex-wrap mx-auto max-w-layout max-md:text-center">
         <h1 class="flex-1 text-6xl font-bold text-primary max-md:max-w-full max-md:text-4xl">
-			Kết quả tìm kiếm
+			Kết quả tìm kiếm "<?php echo get_search_query(); ?>"
         </h1>
       </div>
 

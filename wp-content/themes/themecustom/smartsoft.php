@@ -3,17 +3,21 @@
 
 if (is_page()) {
     $page_id = get_the_ID();
-    $custom_texts = get_post_meta($page_id, 'custom_texts', true) ?: array();
-	$custom_image = get_post_meta($page_id, 'custom_image_urls', true) ?: array();
+    $custom_data = get_post_meta($page_id, 'custom_data', true) ?: [];
 	$slider_data = get_post_meta($page_id, 'slider_data', true) ?: array();
+	usort($custom_data, function($a, $b) {
+		return ($a['index'] <=> $b['index']);
+	});
 }
 get_header();
 ?>
   <main>
     <section class="relative">
       <div class="min-h-[560px] w-full overflow-hidden relative">
-	  	<?php if (!empty($custom_image)) : ?>
-			<img src="<?php echo esc_url($custom_image[0]); ?>" alt="bg" class="absolute w-full h-full object-cover">
+		<?php if (!empty($custom_data)) : ?>
+			<?php if (isset($custom_data[0]['value'])) : ?>
+				<img src="<?php echo esc_url($custom_data[0]['value']); ?>" alt="bg" class="absolute w-full h-full object-cover">
+			<?php endif; ?>
 		<?php endif; ?>
       </div>
       <div class="min-h-[160px] bg-white"></div>
@@ -28,13 +32,17 @@ get_header();
                   <span>/</span>
                   <span class="text-primary">SmartSoft Solutions</span>
                 </nav>
-				<?php if (!empty($custom_texts)) : ?>
+				<?php if (!empty($custom_data)) : ?>
+					<?php if (isset($custom_data[1]['value'])) : ?>
 					<h1 class="mt-6 text-6xl font-bold leading-[84px] max-md:max-w-full max-md:text-4xl">
-						<?php echo wp_kses_post($custom_texts[0]); ?>
+						<?php echo wp_kses_post($custom_data[1]['value']); ?>
 					</h1>
+					<?php endif; ?>
+					<?php if (isset($custom_data[2]['value'])) : ?>
 					<p class="mt-6 text-base max-md:max-w-full">
-						<?php echo wp_kses_post($custom_texts[1]); ?>
+						<?php echo wp_kses_post($custom_data[2]['value']); ?>
 					</p>
+				<?php endif; ?>
 				<?php endif; ?>
               </div>
             </div>
@@ -45,13 +53,17 @@ get_header();
     </section>
     <section class="flex justify-center items-center px-16 py-20 bg-stone-950 max-md:px-5">
 		<div class="flex flex-col w-full max-w-layout max-md:max-w-full">
-			<?php if (!empty($custom_texts)) : ?>
-				<h1 class="text-6xl font-bold text-center text-white leading-[84px] max-md:max-w-full max-md:text-4xl">
-					<?php echo wp_kses_post($custom_texts[2]); ?>
-				</h1>
-				<p class="mt-6 text-base leading-6 text-center text-white max-md:max-w-full">
-					<?php echo wp_kses_post($custom_texts[3]); ?>
-				</p>
+			<?php if (!empty($custom_data)) : ?>
+				<?php if (isset($custom_data[3]['value'])) : ?>
+					<h1 class="text-6xl font-bold text-center text-white leading-[84px] max-md:max-w-full max-md:text-4xl">
+						<?php echo wp_kses_post($custom_data[3]['value']); ?>
+					</h1>
+				<?php endif; ?>
+				<?php if (isset($custom_data[4]['value'])) : ?>
+					<p class="mt-6 text-base leading-6 text-center text-white max-md:max-w-full">
+						<?php echo wp_kses_post($custom_data[4]['value']); ?>
+					</p>
+				<?php endif; ?>
 			<?php endif; ?>
         <div class="mt-12 max-md:mt-10 max-md:max-w-full">
           <div class="flex gap-[116px] max-md:flex-col max-md:gap-0 items-center">

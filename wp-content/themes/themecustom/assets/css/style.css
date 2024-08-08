@@ -12,13 +12,77 @@
   font-family: Lexend;
 }
 
+body {
+    top: 0 !important;
+}
 
+#wap-loading {
+    width: 100%;
+    height: 800px;
+    background-color: #fff;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.d-none {
+	display: none !important;
+}
+
+.loading {
+	display: flex;
+	flex-wrap: wrap;
+	animation: lds-ring 1s linear infinite;
+	width: 70px;
+	height: 70px;
+	top: 10px;
+	left: 10px;
+	border-radius: 50%;
+	box-shadow: 0 2px 0 0 #999;
+	transform-origin: 40px 41px;
+	opacity: 1;
+    visibility: visible;
+	transition: opacity 1s ease, visibility 1s ease;
+	box-sizing: content-box;
+}
+
+#wap-loading.hidden {
+    opacity: 500;
+    visibility: hidden;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg)
+    }
+
+	25% {
+		transform: rotate(90deg)
+	}
+
+    50% {
+        transform: rotate(180deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+body.loading header,
+body.loading main,
+body.loading footer {
+    display: none;
+}
 
 :root {
-  --primaryColor: #0f0f0f;
-  --secondaryColor: #6CB726;
-  --thirdtyColor: #C3E1A6;
-  --whiteColor: #fff;
+	--gray: #999;
+	--primaryColor: #0f0f0f;
+	--secondaryColor: #6CB726;
+	--thirdtyColor: #C3E1A6;
+	--whiteColor: #fff;
 }
 
 .border-gradient {
@@ -117,4 +181,12 @@ img.logo {
     background-color: #f8d7da;
     color: #9c1522;
     border: 1px solid #f5c6cb;
+}
+
+#google_translate_element {
+    display: none !important;
+}
+
+.skiptranslate {
+    display: none !important;
 }

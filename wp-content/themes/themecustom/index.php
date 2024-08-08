@@ -1,13 +1,20 @@
 <?php
 /* Template Name: Home Page */
 
-$homepage = get_page_by_title('Home');
-if ($homepage) {
-    $page_id = $homepage->ID;
-	$custom_data = get_post_meta($page_id, 'custom_data', true) ?: [];
-	usort($custom_data, function($a, $b) {
-		return ($a['index'] <=> $b['index']);
-	});
+$query = new WP_Query(array(
+    'post_type'   => 'page',
+    'title'       => 'Home',
+    'posts_per_page' => 1
+));
+
+if ($query->have_posts()) {
+    $query->the_post();
+    $page_id = get_the_ID();
+    $custom_data = get_post_meta($page_id, 'custom_data', true) ?: [];
+    usort($custom_data, function($a, $b) {
+        return ($a['index'] <=> $b['index']);
+    });
+    wp_reset_postdata();
 }
 
 get_header();
@@ -21,12 +28,12 @@ get_header();
 						<div class="flex flex-col w-[54%] max-md:ml-0 max-md:w-full">
 							<div
 								class=" font-bold text-secondary max-md:max-w-full md:text-[56px] text-[32px] md:text-start text-center">
-									<?php if (!empty($custom_data)) : ?>
-										<?php if (isset($custom_data[0]['value'])) : ?>
-											<span class="text-primary">"<?php echo $custom_data[0]['value'] ?><span class="text-secondary"> <?php echo $custom_data[1]['value'] ?></span>"
-											</span>
-										<?php endif; ?>
+								<?php if (!empty($custom_data)) : ?>
+									<?php if (isset($custom_data[0]['value'])) : ?>
+										<span class="text-primary">&quot;<?php echo $custom_data[0]['value']; ?><span class="text-secondary"> <?php echo $custom_data[1]['value']; ?></span>&quot;
+										</span>
 									<?php endif; ?>
+								<?php endif; ?>
 							</div>
 						</div>
 						<div class="flex flex-col ml-5 w-[46%] max-md:ml-0 max-md:w-full">
@@ -48,9 +55,11 @@ get_header();
 			<div
 				class="flex overflow-hidden relative flex-col justify-center items-start px-16 py-20 min-h-[560px] max-md:px-5 max-md:py-16">
 				<?php if (!empty($custom_data)) : ?>
-					<?php if (isset($custom_data[2]['value'])) : ?>
-						<img loading="lazy" src="<?php echo esc_url($custom_data[3]['value']); ?>" class="object-cover absolute inset-0 size-full" />
-					<?php endif; ?>
+					<?php foreach ($custom_data as $i => $value) : ?>
+						<?php if($value['position'] == 'banner') : ?>
+							<img loading="lazy" src="<?php echo esc_url($custom_data[$i]['value']); ?>" class="object-cover absolute inset-0 size-full" />
+						<?php endif; ?>
+					<?php endforeach; ?>
 				<?php endif; ?>
 				<div class="flex relative flex-col mt-7 ml-0 md:ml-14 max-w-full">
 					<?php if (!empty($custom_data)) : ?>
@@ -136,102 +145,120 @@ get_header();
 					<div class="flex gap-5 max-md:flex-col max-md:gap-0">
 					<div class="flex flex-col w-[59%] max-md:ml-0 max-md:w-full">
 						<div class="flex flex-col grow max-md:max-w-full">
-						<a href="#"
-							class="card flex flex-col py-8 px-6 rounded-2xl bg-neutral-800 max-md:p-4 max-md:max-w-full">
-							<div class="max-md:max-w-full">
-							<div class="flex gap-5 max-md:flex-col max-md:gap-0">
-								<div class="flex flex-col w-[42%] max-md:ml-0 max-md:w-full">
-								<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/technolochy.png"
-									class="grow self-stretch w-full aspect-[1.1] object-cover rounded-lg" />
-								</div>
-								<div class="flex flex-col ml-5 w-[58%] max-md:ml-0 max-md:w-full">
-								<div class="flex flex-col grow max-md:mt-8">
-									<div
-									class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
-									<div>01</div>
-									<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
-									</div>
-									<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
-									<div class="flex-1 bg-clip-text title-gradient">Technology consulting</div>
-									<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
-										class="shrink-0 self-start mt-2 w-8 aspect-square" />
-									</div>
-									<div class="mt-3 text-sm leading-6 text-white">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore
-									magna aliqua.
-									</div>
-								</div>
-								</div>
-							</div>
-							</div>
-						</a>
+							<?php
+							// Lấy danh sách các trang đã xuất bản
+							$exclude_pages = array(
+								get_page_id_by_title('Contact us'),
+								get_page_id_by_title('Home'),
+								get_page_id_by_title('Case study'),
+								get_page_id_by_title('Solutions'),
+							);
+
+							$pages = get_pages(array(
+								'exclude' => $exclude_pages,
+								'sort_column' => 'post_title',
+								'sort_order' => 'asc'
+							));
+
+							$counter = 1;
+
+							foreach ($pages as $page) {
+								// Tạo đường dẫn đến trang
+								$page_link = get_permalink($page->ID);
+								// Lấy tiêu đề và mô tả của trang
+								$title = esc_html($page->post_title);
+								$description = esc_html(get_post_meta($page->ID, '_custom_page_description', true));
+								if ($title == 'Technology Consulting') { ?>
+									<a href="<?php echo esc_url($page_link); ?>" class="card flex flex-col py-8 px-6 rounded-2xl bg-neutral-800 max-md:p-4 max-md:max-w-full">
+										<div class="max-md:max-w-full">
+										<div class="flex gap-5 max-md:flex-col max-md:gap-0">
+											<div class="flex flex-col w-[42%] max-md:ml-0 max-md:w-full">
+											<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/technolochy.png"
+												class="grow self-stretch w-full aspect-[1.1] object-cover rounded-lg" />
+											</div>
+											<div class="flex flex-col ml-5 w-[58%] max-md:ml-0 max-md:w-full">
+											<div class="flex flex-col grow max-md:mt-8">
+												<div
+												class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
+												<div>01</div>
+												<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
+												</div>
+												<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
+												<div class="flex-1 bg-clip-text title-gradient"><?php echo $title; ?></div>
+												<img loading="lazy"
+													src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
+													class="shrink-0 self-start mt-2 w-8 aspect-square" />
+												</div>
+												<div class="mt-3 text-sm leading-6 text-white">
+													<?php echo $description; ?>
+												</div>
+											</div>
+											</div>
+										</div>
+										</div>
+									</a>
+								<?php }
+							} ?>
 
 						<div class="mt-8 max-md:max-w-full">
 							<div class="flex gap-5 max-md:flex-col max-md:gap-0">
-							<a href="#" class="card flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-								<div
-								class="flex flex-col grow self-stretch px-6 py-8 mx-auto w-full text-white rounded-2xl bg-neutral-800 max-md:p-4">
-								<div
-									class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
-									<div>02</div>
-									<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
-								</div>
-								<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
-									<div class="flex-1 bg-clip-text title-gradient">SmartSoft Solutions</div>
-									<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
-									class="shrink-0 self-start mt-2 w-8 aspect-square" />
-								</div>
-								<div class="mt-3 text-sm leading-6 text-white">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-								</div>
-								</div>
-							</a>
-							<a href="#" class="card flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-								<div
-								class="flex flex-col grow px-6 py-8 mx-auto w-full text-white rounded-2xl bg-neutral-800 max-md:p-4 max-md:mt-8">
-								<div
-									class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
-									<div>03</div>
-									<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
-								</div>
-								<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
-									<div class="flex-1 bg-clip-text title-gradient">Outsource IT Service</div>
-									<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
-									class="shrink-0 self-start mt-2 w-8 aspect-square" />
-								</div>
-								<div class="mt-3 text-sm leading-6 text-white">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-									sed do eiusmod tempor incididunt ut labore et dolore
-									magna aliqua.
-								</div>
-								</div>
-							</a>
+								<?php foreach ($pages as $page) {
+									// Tạo đường dẫn đến trang
+									$page_link = get_permalink($page->ID);
+									// Lấy tiêu đề và mô tả của trang
+									$title = esc_html($page->post_title);
+									$description = esc_html(get_post_meta($page->ID, '_custom_page_description', true));
+									if ($title != 'Technology Consulting' && $title != 'IT Academy') {
+										$counter++; ?>
+										<a href="<?php echo esc_url($page_link); ?>" class="card flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+											<div class="flex flex-col grow self-stretch px-6 py-8 mx-auto w-full text-white rounded-2xl bg-neutral-800 max-md:p-4">
+												<div class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
+													<div><?php echo sprintf('%02d', $counter); ?></div>
+													<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
+												</div>
+												<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
+													<div class="flex-1 bg-clip-text title-gradient"><?php echo $title; ?></div>
+													<img loading="lazy" src="<?php bloginfo('template_directory'); ?>/assets/images/arrow-top-right.svg" class="shrink-0 self-start mt-2 w-8 aspect-square" />
+												</div>
+												<div class="mt-3 text-sm leading-6 text-white">
+													<?php echo $description; ?>
+												</div>
+											</div>
+										</a>
+									<?php }
+								} ?>
 							</div>
 						</div>
 						</div>
 					</div>
 					<div class="flex flex-col ml-5 w-[41%] max-md:ml-0 max-md:w-full">
-						<a href="#"
-						class="card flex flex-col grow self-stretch px-6 py-8 w-full text-white rounded-2xl bg-neutral-800 max-md:p-4 max-md:mt-8 max-md:max-w-full">
-						<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/it.png"
-							class="w-full aspect-[1.48] max-md:max-w-full object-cover rounded-lg" />
-						<div
-							class="flex gap-5 mt-8 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400 max-md:flex-wrap">
-							<div>04</div>
-							<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
-						</div>
-						<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
-							<div class="flex-1 bg-clip-text title-gradient">IT Academy</div>
-							<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
-							class="shrink-0 self-start mt-2 w-8 aspect-square" />
-						</div>
-						<div class="mt-3 text-sm leading-6 text-white">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore
-							magna aliqua.
-						</div>
-						</a>
+						<?php foreach ($pages as $page) {
+							// Tạo đường dẫn đến trang
+							$page_link = get_permalink($page->ID);
+							// Lấy tiêu đề và mô tả của trang
+							$title = esc_html($page->post_title);
+							$description = esc_html(get_post_meta($page->ID, '_custom_page_description', true));
+							if ($title == 'IT Academy') { ?>
+								<a href="<?php echo esc_url($page_link); ?>"
+								class="card flex flex-col grow self-stretch px-6 py-8 w-full text-white rounded-2xl bg-neutral-800 max-md:p-4 max-md:mt-8 max-md:max-w-full">
+									<img loading="lazy" src="<?php bloginfo('template_directory')?>/assets/img/home/it.png" class="w-full aspect-[1.48] max-md:max-w-full object-cover rounded-lg" />
+									<div
+										class="flex gap-5 mt-8 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400 max-md:flex-wrap">
+										<div>04</div>
+										<div class="flex-1 shrink-0 my-auto h-px bg-neutral-400"></div>
+									</div>
+									<div class="flex gap-1 px-px mt-8 text-3xl font-bold leading-10">
+										<div class="flex-1 bg-clip-text title-gradient"><?php echo $title; ?></div>
+										<img loading="lazy"
+										src="<?php bloginfo('template_directory')?>/assets/images/arrow-top-right.svg"
+										class="shrink-0 self-start mt-2 w-8 aspect-square" />
+									</div>
+									<div class="mt-3 text-sm leading-6 text-white">
+										<?php echo $description; ?>
+									</div>
+								</a>
+							<?php }
+						} ?>
 					</div>
 					</div>
 				</div>
@@ -367,31 +394,7 @@ get_header();
 				</div>
 			</div>
 			<div class="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-				<div class="flex flex-col grow justify-center text-sm leading-6 rounded-md max-md:mt-10 max-md:max-w-full">
-				<input class="flex gap-1 px-4 py-2.5 whitespace-nowrap rounded bg-zinc-100 max-md:flex-wrap "
-					placeholder="Name">
-				<!-- <div class="text-neutral-800">Name</div>
-						<div class="text-orange-700 max-md:max-w-full">*</div> -->
-
-				</input>
-				<input class="flex gap-1 px-4 py-2.5 mt-4 rounded bg-zinc-100 max-md:flex-wrap"
-					placeholder="E-mail address">
-				<!-- <div class="text-neutral-800">E-mail address</div>
-						<div class="text-orange-700">*</div> -->
-				</input>
-				<input class="flex gap-1 px-4 py-2.5 mt-4 rounded bg-zinc-100 max-md:flex-wrap"
-					placeholder="Company name">
-				<!-- <div class="text-neutral-800">Company name</div>
-						<div class="text-orange-700">*</div> -->
-				</input>
-				<textarea id="message" name="message" rows="3"
-					class="px-4 pt-3 pb-8 mt-4 rounded bg-zinc-100 max-md:max-w-full" placeholder="Your message"
-					aria-label="Message"></textarea>
-				<button
-					class="justify-center self-end px-10 py-3 mt-6 text-base font-semibold leading-6 text-white whitespace-nowrap rounded border border-solid shadow bg-primary border-primary max-md:px-5">
-					Submit
-				</button>
-				</div>
+				<?php echo custom_email_form() ?>
 			</div>
 			</div>
 		</div>

@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/reset.css" />
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/style.css" />
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/header.css">
+  <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/timeline.css">
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/itacademy.css">
   <link rel="stylesheet" href="<?php bloginfo('template_directory')?>/assets/css/smartsoft.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
@@ -20,6 +21,14 @@
 </head>
 
 <body>
+	<div id="wap-loading">
+        <div class="loading">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
   <!-- HEADER DESKTOP -->
   <header class="w-full bg-white z-[9999]" id="header">
     <nav class="mx-auto max-w-layout flex items-center max-md:justify-between px-5 py-3 md:p-0 static max-md:relative">
@@ -78,16 +87,13 @@
 
 
       <!-- Start: Get in touch -->
-      <div class="flex gap-4 md:gap-6">
-        <button type="button" class="md:flex gap-2 py-2 px-4 rounded justify-center items-center hidden ">
-          <i class='bx bx-world md:text-2xl'></i>
-          <span>EN</span>
-        </button>
-        <button type="button"
-          class="showModal py-2 px-4 bg-primary max-md:text-sm text-white font-bold rounded shadow-md hover:bg-secondary">Get
-          in
-          touch</button>
-        <button type="button" id="toggleMenu" class="md:hidden"><i class='bx bx-menu text-2xl'></i></button>
+      	<div class="flex gap-4 md:gap-6">
+		  	<?php echo do_shortcode('[language_selector]'); ?>
+			<button type="button"
+			class="showModal py-2 px-4 bg-primary max-md:text-sm text-white font-bold rounded shadow-md hover:bg-secondary">Get
+			in
+			touch</button>
+			<button type="button" id="toggleMenu" class="md:hidden"><i class='bx bx-menu text-2xl'></i></button>
       </div>
       <!-- End: Get in touch -->
     </nav>
@@ -98,9 +104,9 @@
 				<?php
 				// Lấy tất cả các trang
 				$exclude_pages = array(
-					get_page_by_title('Contact us')->ID,
-					get_page_by_title('Home')->ID,
-					get_page_by_title('Case study')->ID,
+					get_page_id_by_title('Contact us'),
+					get_page_id_by_title('Home'),
+					get_page_id_by_title('Case study')
 				);
 
 				$pages = get_pages(array(

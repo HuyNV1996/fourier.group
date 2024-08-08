@@ -209,7 +209,7 @@ function save_custom_page_meta($post_id) {
 
 	 // Lưu dữ liệu vào cơ sở dữ liệu
 	update_post_meta($post_id, 'custom_data', $custom_data);
-	error_log('Description: ' . print_r($_POST, true));
+
 
 	if (isset($_POST['slider_items']) && isset($_POST['slider_texts'])) {
 		// Lấy dữ liệu hiện có từ cơ sở dữ liệu
@@ -279,11 +279,16 @@ function enqueue_custom_admin_assets($hook) {
 add_action('admin_enqueue_scripts', 'enqueue_custom_admin_assets');
 
 function start_session() {
-    if (!session_id()) {
-        session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+		session_start();
+	}
+}
+
+function close_session_if_active() {
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_write_close();
     }
 }
-add_action('init', 'start_session');
 
 function custom_email_form() {
     ob_start();
@@ -305,6 +310,37 @@ function custom_email_form() {
 }
 add_shortcode('custom_email_form', 'custom_email_form');
 
+// Thêm trường email vào trang Settings > General
+function my_custom_settings_init() {
+    add_settings_section(
+        'my_custom_email_section',
+        'Custom Email Settings',
+        null,
+        'general'
+    );
+
+    add_settings_field(
+        'my_custom_email_field',
+        'Recipient Emails',
+        'my_custom_email_field_render',
+        'general',
+        'my_custom_email_section'
+    );
+
+    register_setting('general', 'my_custom_email_field', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => ''
+    ]);
+}
+add_action('admin_init', 'my_custom_settings_init');
+
+function my_custom_email_field_render() {
+    $emails = get_option('my_custom_email_field', '');
+    echo '<p class="description">Nhập mail. Nếu nhập nhiều mail, hãy để mail cách nhau bằng ","</p><br>';
+    echo '<input type="text" id="my_custom_email_field" name="my_custom_email_field" value="' . esc_attr($emails) . '" class="regular-text ltr" />';
+}
+
 function handle_contact_form_submission() {
     if (isset($_POST['submit_form'])) {
         $name = sanitize_text_field($_POST['name']);
@@ -312,14 +348,16 @@ function handle_contact_form_submission() {
         $email = sanitize_email($_POST['email']);
         $message = sanitize_textarea_field($_POST['message']);
 
-        $to = 'tamvt2.gcode@gmail.com'; // Thay đổi địa chỉ email người nhận
+        // Lấy địa chỉ email người nhận từ cài đặt
+        $to = get_option('my_custom_email_field'); // Mặc định nếu không có cài đặt
+        $recipients = explode(',', $to); // Chia tách địa chỉ email
         $subject = 'New Contact Form Submission';
         $body = "Name: $name\nEmail: $email\nCompany: $company\nMessage: $message";
         $headers = array('Content-Type: text/plain; charset=UTF-8');
 
         // Gửi email
-        $sent = wp_mail($to, $subject, $body, $headers);
-
+        $sent = wp_mail($recipients, $subject, $body, $headers);
+		start_session();
 		// Lưu thông báo vào session
         if ($sent) {
             $_SESSION['contact_form_message'] = array(
@@ -334,9 +372,37 @@ function handle_contact_form_submission() {
         }
 
         // Điều hướng lại trang để tránh gửi lại form khi tải lại
-		session_write_close();
+		close_session_if_active();
         wp_redirect($_SERVER['REQUEST_URI']);
         exit;
     }
 }
 add_action('wp', 'handle_contact_form_submission');
+
+function language_selector_shortcode() {
+    ob_start();
+    ?>
+	<select class="notranslate md:w-[160px]" id="select-language-option">
+		<option value="">Select Language</option>
+	</select>
+    <div id="google_translate_element"></div>
+    <?php return ob_get_clean();
+}
+add_shortcode('language_selector', 'language_selector_shortcode');
+
+function get_page_id_by_title($title) {
+    $query = new WP_Query(array(
+        'post_type'      => 'page',
+        'title'          => $title,
+        'posts_per_page' => 1
+    ));
+
+    if ($query->have_posts()) {
+        $query->the_post();
+        $page_id = get_the_ID();
+        wp_reset_postdata();
+        return $page_id;
+    }
+
+    return null;
+}
