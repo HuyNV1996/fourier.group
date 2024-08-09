@@ -22,16 +22,7 @@ get_header();
 
 	  	<div class="self-stretch mt-16">
 		  	<div id="cards-container" class="grid md:grid-cols-3 grid-cols-1 gap-10 max-md:flex-col max-w-layout w-full mx-auto">
-				<?php
-				// Tạo một đối tượng WP_Query với các tham số bạn muốn
-				$paged = get_query_var('paged') ? get_query_var('paged') : 1;
-				$query = new WP_Query(array(
-					'post_type' => 'post',
-					'posts_per_page' => 12,
-					'orderby' => 'date',
-					'order' => 'DESC',
-					'paged' => $paged
-				));
+				<?php $query = get_custom_posts(12);
 
 				// Kiểm tra nếu có bài viết
 				if ($query->have_posts()) :

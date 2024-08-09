@@ -23,10 +23,6 @@
 <body>
 	<div id="wap-loading">
         <div class="loading">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
         </div>
     </div>
   <!-- HEADER DESKTOP -->
@@ -64,25 +60,14 @@
 
       <!-- End Menu Desktop -->
       <!-- Start Menu Mobile -->
-      <ul id="menu-mobile" class="absolute w-full top-full bg-white z-50 left-0 pb-6 pt-2 shadow-md md:hidden">
-        <li class="item-menu-mb justify-between items-center px-5 py-3"><a href="#">Home</a></li>
-        <li class="item-menu-mb drop-down-mb flex justify-between items-center px-5 py-3"><a href="#">Solutions</a> <i
-            class='bx bx-chevron-down text-base'></i></li>
-        <li class="item-menu-mb drop-down-content">
-          <nav class="flex flex-col gap-6 px-8 py-6">
-            <a href="#1" class="item-dropdown font-semibold">Technology consulting</a>
-            <a href="#2" class="item-dropdown font-semibold">SmartSoft Solutions</a>
-            <a href="#3" class="item-dropdown font-semibold">Outsource IT Service</a>
-            <a href="#4" class="item-dropdown font-semibold">IT Academy</a>
-            <a href="#5" class="item-dropdown font-semibold">Drone Show Solutions</a>
-            <a href="#6"
-              class="shrink-0 py-2 px-4 self-start max-md:text-sm text-primary font-bold rounded shadow-sm border-primary border">Go
-              to overview</a>
-          </nav>
-        </li>
-        <li class="item-menu-mb flex justify-between items-center px-5 py-3"><a href="#">Case study</a></li>
-        <li class="item-menu-mb flex justify-between items-center px-5 py-3"><a href="#">Contact us</a></li>
-      </ul>
+			<?php
+			wp_nav_menu(array(
+				'theme_location' => 'topmenu',
+				'container' => 'false',
+				'menu_id' => 'menu-mobile',
+				'menu_class' => 'absolute w-full top-full bg-white z-50 left-0 pb-6 pt-2 shadow-md md:hidden'
+			));
+			?>
       <!-- End Menu Mobile -->
 
 
@@ -90,9 +75,7 @@
       	<div class="flex gap-4 md:gap-6">
 		  	<?php echo do_shortcode('[language_selector]'); ?>
 			<button type="button"
-			class="showModal py-2 px-4 bg-primary max-md:text-sm text-white font-bold rounded shadow-md hover:bg-secondary">Get
-			in
-			touch</button>
+			class="showModal py-2 px-4 bg-primary max-md:text-sm text-white font-bold rounded shadow-md hover:bg-secondary">Get in touch</button>
 			<button type="button" id="toggleMenu" class="md:hidden"><i class='bx bx-menu text-2xl'></i></button>
       </div>
       <!-- End: Get in touch -->

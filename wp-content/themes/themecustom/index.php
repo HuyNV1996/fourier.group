@@ -37,13 +37,9 @@ get_header();
 							</div>
 						</div>
 						<div class="flex flex-col ml-5 w-[46%] max-md:ml-0 max-md:w-full">
-							<?php if (!empty($custom_data)) : ?>
-								<?php if (isset($custom_data[2]['value'])) : ?>
-									<div class="self-stretch my-auto text-base leading-6 text-primary max-md:mt-8 max-md:max-w-full md:text-start text-center">
-										<?php echo wpautop($custom_data[2]['value']); ?>
-									</div>
-								<?php endif; ?>
-							<?php endif; ?>
+							<div class="self-stretch my-auto text-base leading-6 text-primary max-md:mt-8 max-md:max-w-full md:text-start text-center">
+								<?php echo wpautop(get_data($custom_data, 'Description')); ?>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -54,13 +50,7 @@ get_header();
 
 			<div
 				class="flex overflow-hidden relative flex-col justify-center items-start px-16 py-20 min-h-[560px] max-md:px-5 max-md:py-16">
-				<?php if (!empty($custom_data)) : ?>
-					<?php foreach ($custom_data as $i => $value) : ?>
-						<?php if($value['position'] == 'banner') : ?>
-							<img loading="lazy" src="<?php echo esc_url($custom_data[$i]['value']); ?>" class="object-cover absolute inset-0 size-full" />
-						<?php endif; ?>
-					<?php endforeach; ?>
-				<?php endif; ?>
+					<img loading="lazy" src="<?php echo esc_url(get_data($custom_data, 'banner')); ?>" class="object-cover absolute inset-0 size-full" />
 				<div class="flex relative flex-col mt-7 ml-0 md:ml-14 max-w-full">
 					<?php if (!empty($custom_data)) : ?>
 						<?php if (isset($custom_data[4]['value'])) : ?>
@@ -200,7 +190,7 @@ get_header();
 								<?php }
 							} ?>
 
-						<div class="mt-8 max-md:max-w-full">
+						<div class="md:mt-8 max-md:max-w-full">
 							<div class="flex gap-5 max-md:flex-col max-md:gap-0">
 								<?php foreach ($pages as $page) {
 									// Tạo đường dẫn đến trang
@@ -210,7 +200,7 @@ get_header();
 									$description = esc_html(get_post_meta($page->ID, '_custom_page_description', true));
 									if ($title != 'Technology Consulting' && $title != 'IT Academy') {
 										$counter++; ?>
-										<a href="<?php echo esc_url($page_link); ?>" class="card flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+										<a href="<?php echo esc_url($page_link); ?>" class="card flex flex-col w-6/12 max-md:ml-0 max-md:w-full max-md:mt-8">
 											<div class="flex flex-col grow self-stretch px-6 py-8 mx-auto w-full text-white rounded-2xl bg-neutral-800 max-md:p-4">
 												<div class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
 													<div><?php echo sprintf('%02d', $counter); ?></div>

@@ -111,7 +111,7 @@ get_header();
 							<?php }
 						} ?>
 
-                  <div class="mt-8 max-md:max-w-full">
+                  <div class="md:mt-8 max-md:max-w-full">
                     <div class="flex gap-5 max-md:flex-col max-md:gap-0">
 						<?php foreach ($pages as $page) {
 							// Tạo đường dẫn đến trang
@@ -121,7 +121,7 @@ get_header();
 							$description = esc_html(get_post_meta($page->ID, '_custom_page_description', true));
 							if ($title != 'Technology Consulting' && $title != 'IT Academy') {
 								$counter++; ?>
-								<a href="<?php echo esc_url($page_link); ?>" class="card flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+								<a href="<?php echo esc_url($page_link); ?>" class="max-md:mt-8 card flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
 									<div class="flex flex-col grow self-stretch px-6 py-8 mx-auto w-full text-white rounded-2xl bg-neutral-800 max-md:p-4">
 										<div class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-400">
 											<div><?php echo sprintf('%02d', $counter); ?></div>
@@ -266,16 +266,7 @@ get_header();
 
         <div class="mt-16 max-md:mt-8 max-md:max-w-full">
           <div class="flex flex-nowrap gap-5 overflow-x-auto max-md:pb-2">
-		  	<?php
-				// Tạo một đối tượng WP_Query với các tham số bạn muốn
-				$paged = get_query_var('paged') ? get_query_var('paged') : 1;
-				$query = new WP_Query(array(
-					'post_type' => 'post',
-					'posts_per_page' => 3,
-					'orderby' => 'date',
-					'order' => 'DESC',
-					'paged' => $paged
-				));
+		  	<?php $query = get_custom_posts(3);
 
 				// Kiểm tra nếu có bài viết
 				if ($query->have_posts()) :

@@ -1,4 +1,7 @@
 <?php
+define( 'WP_CACHE', false /* Modified by NitroPack */ );
+ // Added by WP Rocket
+
 /**
  * The base configuration for WordPress
  *

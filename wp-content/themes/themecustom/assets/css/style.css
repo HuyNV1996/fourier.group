@@ -8,12 +8,28 @@
   src: url('../fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
 }
 
+@media (max-width: 768px) {
+    #menu-mobile .menu-item {
+        padding: 1rem;
+		border-bottom: 0.5px solid #333;
+    }
+
+	.menu-item-133 {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
 * {
   font-family: Lexend;
 }
 
 body {
     top: 0 !important;
+}
+
+.d-none {
+	display: none !important;
 }
 
 #wap-loading {
@@ -25,10 +41,6 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 10000;
-}
-
-.d-none {
-	display: none !important;
 }
 
 .loading {

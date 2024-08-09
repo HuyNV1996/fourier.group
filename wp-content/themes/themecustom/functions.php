@@ -406,3 +406,70 @@ function get_page_id_by_title($title) {
 
     return null;
 }
+
+function get_data($values, $i) {
+	$data = '';
+	if (!empty($values)) {
+		foreach ($values as $key => $value) {
+			if ($value['position'] == $i) {
+				$data = $values[$key]['value'];
+			}
+		}
+	}
+	return $data;
+}
+
+function get_custom_posts($count) {
+	if (!is_int($count) || $count <= 0) {
+		return new WP_Query();
+	}
+	$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+	$query = new WP_Query(array(
+		'post_type' => 'post',
+		'posts_per_page' => $count,
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'paged' => $paged
+	));
+
+	return $query;
+}
+
+function menu_mobile() {
+	$html = '';
+	$exclude_pages = array(
+		get_page_id_by_title('Contact us'),
+		get_page_id_by_title('Home'),
+		get_page_id_by_title('Case study')
+	);
+
+	$pages = get_pages(array(
+		'exclude' => $exclude_pages,
+		'sort_column' => 'post_title',
+		'sort_order' => 'asc'
+	));
+
+
+	if ($pages) {
+		foreach ($pages as $page) {
+			if ($page->post_title == 'Solutions') {
+                $html .= '<a href="' . get_permalink($page->ID) . '" class="shrink-0 py-2 px-4 self-start max-md:text-sm text-primary font-bold rounded shadow-sm border-primary border">Go to overview</a>';
+            } else if ($page->post_title != 'Solutions') {
+                $html .= '<a href="' . get_permalink($page->ID) . '" class="item-dropdown font-semibold">' . esc_html($page->post_title) . '</a>';
+            }
+		}?>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function () {
+				const menuMobile = document.querySelector('#menu-mobile .menu-item-133');
+				let html = '<?php echo esc_html($html); ?>'
+				if (menuMobile) {
+					menuMobile.insertAdjacentHTML('beforeend', '<i class="bx bx-chevron-down text-base"></i>');
+					menuMobile.insertAdjacentHTML('afterend', '<li class="item-menu-mb drop-down-content"><nav class="flex flex-col gap-6 px-8 py-6"><?php echo $html; ?></nav></li>');
+				}
+			})
+		</script>
+
+	<?php }
+}
+
+add_action('wp', 'menu_mobile');

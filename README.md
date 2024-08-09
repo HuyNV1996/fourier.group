@@ -59,19 +59,16 @@ function add_custom_page_meta_box() {
 add_action('add_meta_boxes', 'add_custom_page_meta_box');
 
 function render_custom_page_meta_box($post) {
-
 	$custom_logo = get_option('custom_site_logo', '');
 	$custom_data = get_post_meta($post->ID, 'custom_data', true) ?: [];
 	$slider_data = get_post_meta($post->ID, 'slider_data', true) ?: array();
     $description = get_post_meta($post->ID, '_custom_page_description', true);
-
 
 	usort($custom_data, function($a, $b) {
 		return ($a['index'] <=> $b['index']);
 	});
 
     wp_nonce_field('save_custom_page_description', 'custom_page_description_nonce');
-
 	if ($post->post_title === 'Home') : ?>
 		<div class="logo">
 			<label for="custom_logo"><?php _e('Logo:', 'textdomain'); ?></label><br>
@@ -224,7 +221,7 @@ function save_custom_page_meta($post_id) {
 
 	 // Lưu dữ liệu vào cơ sở dữ liệu
 	update_post_meta($post_id, 'custom_data', $custom_data);
-	error_log('Description: ' . print_r($_POST, true));
+
 
 	if (isset($_POST['slider_items']) && isset($_POST['slider_texts'])) {
 		// Lấy dữ liệu hiện có từ cơ sở dữ liệu
@@ -294,11 +291,16 @@ function enqueue_custom_admin_assets($hook) {
 add_action('admin_enqueue_scripts', 'enqueue_custom_admin_assets');
 
 function start_session() {
-    if (!session_id()) {
-        session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+		session_start();
+	}
+}
+
+function close_session_if_active() {
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_write_close();
     }
 }
-add_action('init', 'start_session');
 
 function custom_email_form() {
     ob_start();
@@ -320,6 +322,37 @@ function custom_email_form() {
 }
 add_shortcode('custom_email_form', 'custom_email_form');
 
+// Thêm trường email vào trang Settings > General
+function my_custom_settings_init() {
+    add_settings_section(
+        'my_custom_email_section',
+        'Custom Email Settings',
+        null,
+        'general'
+    );
+
+    add_settings_field(
+        'my_custom_email_field',
+        'Recipient Emails',
+        'my_custom_email_field_render',
+        'general',
+        'my_custom_email_section'
+    );
+
+    register_setting('general', 'my_custom_email_field', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => ''
+    ]);
+}
+add_action('admin_init', 'my_custom_settings_init');
+
+function my_custom_email_field_render() {
+    $emails = get_option('my_custom_email_field', '');
+    echo '<p class="description">Nhập mail. Nếu nhập nhiều mail, hãy để mail cách nhau bằng ","</p><br>';
+    echo '<input type="text" id="my_custom_email_field" name="my_custom_email_field" value="' . esc_attr($emails) . '" class="regular-text ltr" />';
+}
+
 function handle_contact_form_submission() {
     if (isset($_POST['submit_form'])) {
         $name = sanitize_text_field($_POST['name']);
@@ -327,14 +360,16 @@ function handle_contact_form_submission() {
         $email = sanitize_email($_POST['email']);
         $message = sanitize_textarea_field($_POST['message']);
 
-        $to = 'tamvt2.gcode@gmail.com'; // Thay đổi địa chỉ email người nhận
+        // Lấy địa chỉ email người nhận từ cài đặt
+        $to = get_option('my_custom_email_field'); // Mặc định nếu không có cài đặt
+        $recipients = explode(',', $to); // Chia tách địa chỉ email
         $subject = 'New Contact Form Submission';
         $body = "Name: $name\nEmail: $email\nCompany: $company\nMessage: $message";
         $headers = array('Content-Type: text/plain; charset=UTF-8');
 
         // Gửi email
-        $sent = wp_mail($to, $subject, $body, $headers);
-
+        $sent = wp_mail($recipients, $subject, $body, $headers);
+		start_session();
 		// Lưu thông báo vào session
         if ($sent) {
             $_SESSION['contact_form_message'] = array(
@@ -348,14 +383,108 @@ function handle_contact_form_submission() {
             );
         }
 
-
         // Điều hướng lại trang để tránh gửi lại form khi tải lại
-		session_write_close();
+		close_session_if_active();
         wp_redirect($_SERVER['REQUEST_URI']);
         exit;
     }
 }
 add_action('wp', 'handle_contact_form_submission');
+
+function language_selector_shortcode() {
+    ob_start();
+    ?>
+	<select class="notranslate md:w-[160px]" id="select-language-option">
+		<option value="">Select Language</option>
+	</select>
+    <div id="google_translate_element"></div>
+    <?php return ob_get_clean();
+}
+add_shortcode('language_selector', 'language_selector_shortcode');
+
+function get_page_id_by_title($title) {
+    $query = new WP_Query(array(
+        'post_type'      => 'page',
+        'title'          => $title,
+        'posts_per_page' => 1
+    ));
+
+    if ($query->have_posts()) {
+        $query->the_post();
+        $page_id = get_the_ID();
+        wp_reset_postdata();
+        return $page_id;
+    }
+
+    return null;
+}
+
+function get_data($values, $i) {
+	$data = '';
+	if (!empty($values)) {
+		foreach ($values as $key => $value) {
+			if ($value['position'] == $i) {
+				$data = $values[$key]['value'];
+			}
+		}
+	}
+	return $data;
+}
+
+function get_custom_posts($count) {
+	if (!is_int($count) || $count <= 0) {
+		return new WP_Query();
+	}
+	$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+	$query = new WP_Query(array(
+		'post_type' => 'post',
+		'posts_per_page' => $count,
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'paged' => $paged
+	));
+
+	return $query;
+}
+
+function menu_mobile() {
+	$html = '';
+	$exclude_pages = array(
+		get_page_id_by_title('Contact us'),
+		get_page_id_by_title('Home'),
+		get_page_id_by_title('Case study')
+	);
+
+	$pages = get_pages(array(
+		'exclude' => $exclude_pages,
+		'sort_column' => 'post_title',
+		'sort_order' => 'asc'
+	));
+
+
+	if ($pages) {
+		foreach ($pages as $page) {
+			if ($page->post_title == 'Solutions') {
+                $html .= '<a href="' . get_permalink($page->ID) . '" class="shrink-0 py-2 px-4 self-start max-md:text-sm text-primary font-bold rounded shadow-sm border-primary border">Go to overview</a>';
+            } else if ($page->post_title != 'Solutions') {
+                $html .= '<a href="' . get_permalink($page->ID) . '" class="item-dropdown font-semibold">' . esc_html($page->post_title) . '</a>';
+            }
+		}?>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function () {
+				const menuMobile = document.querySelector('#menu-mobile .menu-item-133');
+				let html = '<?php echo esc_html($html); ?>'
+				if (menuMobile) {
+					menuMobile.insertAdjacentHTML('beforeend', '<i class="bx bx-chevron-down text-base"></i>');
+					menuMobile.insertAdjacentHTML('afterend', '<li class="item-menu-mb drop-down-content"><nav class="flex flex-col gap-6 px-8 py-6"><?php echo $html; ?></nav></li>');
+				}
+			})
+		</script>
+
+	<?php }
+}
+
+add_action('wp', 'menu_mobile');
 ```
 
 Hiển thị ảnh, text ở trang chủ (index.php)
@@ -567,3 +696,109 @@ File search.php
 		));
 	endif;
 ```
+
+Plugin Yoast SEO
+
+Tác Dụng
+
+-   Tối ưu hóa từ khóa: Hướng dẫn bạn cách sử dụng từ khóa chính và từ khóa phụ một cách hiệu quả trong nội dung.
+-   Tạo và quản lý sitemap: Tự động tạo sitemap XML để giúp các công cụ tìm kiếm dễ dàng lập chỉ mục nội dung.
+-   Tối ưu hóa tiêu đề và mô tả meta: Cung cấp công cụ để chỉnh sửa tiêu đề và mô tả meta cho các bài viết và trang.
+-   Phân tích nội dung: Cung cấp phân tích SEO cho nội dung để đảm bảo rằng nó đạt yêu cầu tối ưu hóa.
+-   Cải thiện khả năng đọc: Đưa ra gợi ý về cách làm cho nội dung dễ đọc hơn.
+
+Cấu Hình
+
+-   Truy Cập Cài Đặt: Sau khi kích hoạt, bạn sẽ thấy một mục mới gọi là SEO trong menu bên trái của bảng điều khiển WordPress.
+-   Sử Dụng Trình Hướng Dẫn Cài Đặt: Vào SEO > General, bạn sẽ thấy một phần gọi là Features. Nhấp vào tab Features và sử dụng trình hướng dẫn cài đặt để cấu hình các tùy chọn cơ bản.
+-   Thiết Lập Tiêu Đề và Mô Tả Meta: Vào tab Search Appearance để thiết lập tiêu đề và mô tả meta cho các loại nội dung khác nhau (bài viết, trang, danh mục, ...).
+
+Cách Dùng
+
+-   Tối Ưu Hóa Bài Viết và Trang: Khi chỉnh sửa một bài viết hoặc trang, sẽ thấy phần Yoast SEO bên dưới trình chỉnh sửa nội dung. Tại đây, có thể nhập từ khóa chính, tối ưu hóa tiêu đề và mô tả meta, và kiểm tra phân tích SEO và khả năng đọc.
+-   Tạo Sơ Đồ Trang: Yoast SEO tự động tạo sơ đồ trang (XML sitemap). Có thể xem sơ đồ này bằng cách vào SEO > General > Features và kiểm tra XML sitemaps.
+
+Plugin Wordfence Security
+
+Tác Dụng
+
+-   Tường lửa: Bảo vệ trang web khỏi các cuộc tấn công bằng cách chặn các IP đáng ngờ và các mối đe dọa bảo mật.
+-   Quét phần mềm độc hại: Quét các tệp và cơ sở dữ liệu của trang web để phát hiện phần mềm độc hại, các vấn đề bảo mật và các lỗ hổng.
+-   Giám sát các hoạt động đăng nhập: Theo dõi các hoạt động đăng nhập, bao gồm các đăng nhập thành công và không thành công, và thông báo khi có hành vi đăng nhập bất thường.
+-   Phát hiện và chặn các cuộc tấn công brute-force: Bảo vệ trang web của bạn khỏi các cuộc tấn công brute-force bằng cách giới hạn số lần thử đăng nhập không thành công.
+-   Bảo vệ và kiểm soát truy cập: Cung cấp các tùy chọn để bảo vệ các trang quản trị và các khu vực nhạy cảm của trang web.
+-   Cung cấp thông tin chi tiết về bảo mật: Cung cấp các báo cáo chi tiết về tình hình bảo mật của trang web và các cuộc tấn công tiềm ẩn.
+
+Cấu Hình
+
+-   Truy Cập Cài Đặt: Sau khi kích hoạt, sẽ thấy mục Wordfence trong menu bên trái của bảng điều khiển WordPress.
+-   Thiết Lập Cơ Bản: Vào Wordfence > Dashboard, sẽ thấy các thông báo và cấu hình cơ bản. Bạn có thể thiết lập thông báo email và cấu hình các tùy chọn cơ bản.
+-   Cài Đặt Tường Lửa (Firewall): Vào Wordfence > Firewall và làm theo hướng dẫn để cấu hình tường lửa của Wordfence. Cần xác minh cấu hình tường lửa để nó hoạt động hiệu quả.
+-   Quét Phần Mềm Độc Hại: Vào Wordfence > Scan và chạy quét để tìm phần mềm độc hại và các vấn đề bảo mật.
+-   Theo Dõi Hoạt Động Đăng Nhập: Vào Wordfence > Login Security để thiết lập các tùy chọn bảo mật cho các hoạt động đăng nhập.
+
+Cách Dùng
+
+-   Thiết Lập Các Tùy Chọn Bảo Mật: Vào Wordfence > Options để tùy chỉnh các tùy chọn bảo mật, bao gồm cấu hình cho các cuộc tấn công brute-force, cấu hình tường lửa, và các tùy chọn quét phần mềm độc hại.
+-   Xem Báo Cáo Bảo Mật: Vào Wordfence > Live Traffic để xem các hoạt động truy cập trực tiếp và các mối đe dọa bảo mật đang hoạt động.
+
+Plugin UpdraftPlus
+
+Tác Dụng
+
+-   Sao Lưu Dữ Liệu: Tạo các bản sao lưu của toàn bộ trang web, bao gồm cơ sở dữ liệu, tệp tin và các cài đặt.
+    Khôi Phục Dữ Liệu: Khôi phục trang web từ các bản sao lưu nếu xảy ra sự cố hoặc hỏng hóc.
+-   Lên Lịch Sao Lưu: Tự động lên lịch sao lưu theo khoảng thời gian mà bạn chỉ định, chẳng hạn như hàng ngày, hàng tuần hoặc hàng tháng.
+-   Lưu Trữ Ngoại Tuyến: Sao lưu dữ liệu ra các dịch vụ lưu trữ đám mây như Google Drive, Dropbox, Amazon S3, và nhiều dịch vụ khác.
+-   Sao Lưu Được Chọn: Lựa chọn các phần cụ thể của trang web để sao lưu, chẳng hạn như chỉ sao lưu cơ sở dữ liệu hoặc tệp tin.
+-   Khôi Phục Nhanh: Khôi phục các bản sao lưu một cách dễ dàng thông qua giao diện WordPress.
+
+Cấu Hình
+
+-   Truy Cập Cài Đặt: Sau khi kích hoạt, vào Settings > UpdraftPlus Backups để cấu hình plugin.
+
+Cài Đặt Lịch Sao Lưu:
+
+-   Tab Settings: Chọn các tùy chọn sao lưu theo ý bạn trong mục Files backup schedule và Database backup schedule. Chọn tần suất sao lưu (hàng ngày, hàng tuần, hàng tháng).
+-   Lưu Trữ Đám Mây: Chọn dịch vụ lưu trữ đám mây bạn muốn sử dụng để lưu trữ các bản sao lưu. Nhấp vào liên kết cấu hình và nhập thông tin cần thiết (như mã API hoặc xác thực).
+
+Thực Hiện Sao Lưu Thủ Công:
+
+-   Tab Backup / Restore: Nhấp vào nút Backup Now để tạo một bản sao lưu ngay lập tức.
+-   Tùy Chọn Backup: Chọn để sao lưu các tệp tin, cơ sở dữ liệu, hoặc cả hai. Nhấp vào Backup Now để bắt đầu sao lưu.
+
+Khôi Phục Bản Sao Lưu:
+
+-   Tab Backup / Restore: Trong danh sách các bản sao lưu có sẵn, bạn có thể chọn bản sao lưu để khôi phục. Nhấp vào Restore và chọn các phần bạn muốn khôi phục (tệp tin, cơ sở dữ liệu, v.v.).
+
+Kiểm Tra Trạng Thái Sao Lưu:
+
+-   Tab Existing Backups: Xem danh sách các bản sao lưu đã tạo, kiểm tra trạng thái và các tùy chọn phục hồi.
+
+Plugin WP Fastest Cache
+
+Tác Dụng
+
+-   Caching Trang: Lưu trữ các trang HTML đã được tạo ra để phục vụ nhanh chóng cho các lần truy cập sau mà không cần phải xử lý lại từ đầu.
+-   Minification: Nén các tệp CSS và JavaScript để giảm kích thước tệp và cải thiện tốc độ tải trang.
+-   Combine Files: Kết hợp nhiều tệp CSS và JavaScript thành một tệp duy nhất để giảm số lượng yêu cầu HTTP.
+-   Browser Caching: Lưu trữ các tệp tĩnh trong trình duyệt của người dùng để giảm thời gian tải trang cho các lần truy cập sau.
+-   GZIP Compression: Nén dữ liệu trước khi gửi từ máy chủ đến trình duyệt để giảm kích thước dữ liệu và tăng tốc tải trang.
+-   Preload: Tạo sẵn các bản sao của trang để phục vụ nhanh chóng cho người dùng.
+-   CDN Integration: Tích hợp với mạng phân phối nội dung (CDN) để phục vụ nội dung từ máy chủ gần người dùng hơn.
+
+Cấu Hình Plugin
+
+Truy Cập Cài Đặt: Sau khi kích hoạt, vào WP Fastest Cache trên menu bên trái để truy cập các cài đặt của plugin.
+
+Basic Settings:
+
+-   Preload: Tự động tạo bộ nhớ đệm của tất cả các trang web.
+-   Minify HTML/CSS: Nén HTML/CSS để giảm kích thước tệp.
+-   Combine CSS/JS: Kết hợp các tệp CSS và JavaScript thành một tệp duy nhất.
+-   Gzip: Giảm kích thước của các tập tin được gửi từ máy chủ của bạn.
+-   Browser Caching: Giảm thời gian tải trang cho khách truy cập thường xuyên.
+
+Xóa Cache
+
+-   Xóa Cache: Để áp dụng các thay đổi mới hoặc làm mới nội dung, bạn có thể xóa cache từ tab WP Fastest Cache > Delete Cache. Bạn có thể chọn xóa cache cho tất cả các trang hoặc cho trang chính cụ thể.

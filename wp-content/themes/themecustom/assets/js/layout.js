@@ -16,6 +16,20 @@ btnClose.addEventListener('click', (e) => {
 
 var menuItem = document.getElementById('menu-item-133');
 var megaMenuContent = document.getElementsByClassName('mega-menu-content');
+document.addEventListener('DOMContentLoaded', function () {
+	const menuMobileItem = document.querySelector('#menu-mobile .item-menu-mb');
+	const menuMobile = document.querySelector('#menu-mobile .menu-item-133');
+
+	if (menuMobileItem) {
+		menuMobileItem.classList.add('hidden');
+	}
+
+	if (menuMobile) {
+		menuMobile.addEventListener('click', (e) => {
+			menuMobileItem.classList.toggle('hidden');
+		});
+	}
+});
 
 if (menuItem) {
 	var anchorTag = menuItem.querySelector('a');
