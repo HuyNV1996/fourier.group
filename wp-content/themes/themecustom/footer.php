@@ -1,6 +1,16 @@
-	<footer class="flex flex-col items-center py-12 max-md:px-5 bg-primary w-full">
+<?php
+$logo = get_option('footer_logo', '');
+$address = get_option('footer_address', '');
+$email = get_option('footer_email', '');
+$phone = get_option('footer_phone', '');
+
+?>
+
+<footer class="flex flex-col items-center py-12 max-md:px-5 bg-primary w-full">
 		<div class="max-w-layout mx-auto w-full">
-			<a href="#" class="block uppercase text-[40px] mb-8 font-extrabold text-white font-['Baloo']">FOURIER.Inc</a>
+			<?php if (!empty($logo)): ?>
+				<a href="#" class="block uppercase text-[40px] mb-8 font-extrabold text-white font-['Baloo']"><?php echo esc_html($logo); ?></a>
+			<?php endif; ?>
 			<div class="flex max-md:flex-col gap-8">
 				<aside class="flex flex-col flex-1">
 					<div class="flex flex-col grow text-sm leading-6 text-white">
@@ -8,19 +18,25 @@
 							<img loading="lazy"
 								src="https://cdn.builder.io/api/v1/image/assets/TEMP/1d43e9bb5ef6ba263ca99fd55bda09ef5fc95ca2ffaaa022ec2ca7dad91d1179?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
 								alt="Location Icon" class="shrink-0 my-auto w-5 aspect-square" />
-							<p>117 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội</p>
+							<?php if (isset($address)) : ?>
+								<p><?php echo esc_html($address); ?></p>
+							<?php endif; ?>
 						</div>
 						<div class="flex gap-4 mt-4 whitespace-nowrap">
 							<img loading="lazy"
 								src="https://cdn.builder.io/api/v1/image/assets/TEMP/e3b040a4f8c506f01d127f6b020d1f1277a762180d7ef10871fbace0bdf1565b?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
 								alt="Email Icon" class="shrink-0 my-auto w-5 aspect-square" />
-							<p>contact@apec.com.vn</p>
+							<?php if (isset($email)) : ?>
+								<p><?php echo esc_html($email); ?></p>
+							<?php endif; ?>
 						</div>
 						<div class="flex gap-4 mt-4">
 							<img loading="lazy"
 								src="https://cdn.builder.io/api/v1/image/assets/TEMP/6df5da042d478cb43f8fe745edc7ece670b62a3f0d295b7a15c4bf098cbd9e97?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
 								alt="Phone Icon" class="shrink-0 my-auto w-5 aspect-square" />
-							<p>1900 000 000</p>
+							<?php if (isset($phone)) : ?>
+								<p><?php echo esc_html($phone); ?></p>
+							<?php endif; ?>
 						</div>
 					</div>
 				</aside>

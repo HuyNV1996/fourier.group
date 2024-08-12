@@ -312,9 +312,10 @@ add_shortcode('custom_email_form', 'custom_email_form');
 
 // Thêm trường email vào trang Settings > General
 function my_custom_settings_init() {
+    // Thêm phần cài đặt cho Email
     add_settings_section(
         'my_custom_email_section',
-        'Custom Email Settings',
+        'Email Settings',
         null,
         'general'
     );
@@ -332,13 +333,189 @@ function my_custom_settings_init() {
         'sanitize_callback' => 'sanitize_text_field',
         'default' => ''
     ]);
+
+    // Thêm phần cài đặt cho Footer
+    add_settings_section(
+        'footer_section',
+        'Footer Settings',
+        null,
+        'general'
+    );
+
+	add_settings_field(
+        'footer_logo',
+        'Footer Logo',
+        'footer_logo_render',
+        'general',
+        'footer_section'
+    );
+
+    add_settings_field(
+        'footer_address',
+        'Address',
+        'footer_address_render',
+        'general',
+        'footer_section'
+    );
+
+    add_settings_field(
+        'footer_email',
+        'Email',
+        'footer_email_render',
+        'general',
+        'footer_section'
+    );
+
+    add_settings_field(
+        'footer_phone',
+        'Phone',
+        'footer_phone_render',
+        'general',
+        'footer_section'
+    );
+
+    register_setting('general', 'footer_logo', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => ''
+    ]);
+
+    register_setting('general', 'footer_address', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'default' => ''
+    ]);
+
+    register_setting('general', 'footer_email', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_email',
+        'default' => ''
+    ]);
+
+    register_setting('general', 'footer_phone', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => ''
+    ]);
+
+	add_settings_section(
+        'link',
+        'Link',
+        null,
+        'general'
+    );
+
+	add_settings_field(
+        'link_facebook',
+        'Link Facebook',
+        'link_facebook_render',
+        'general',
+        'link'
+    );
+
+	register_setting('general', 'link_facebook', [
+        'type' => 'string',
+        'sanitize_callback' => 'esc_url_raw',
+        'default' => ''
+    ]);
+
+	add_settings_field(
+        'linkedin',
+        'Link Linkedin',
+        'link_linkedin_render',
+        'general',
+        'link'
+    );
+
+	register_setting('general', 'linkedin', [
+        'type' => 'string',
+        'sanitize_callback' => 'esc_url_raw',
+        'default' => ''
+    ]);
+
+	add_settings_field(
+        'link_github',
+        'Link Github',
+        'link_github_render',
+        'general',
+        'link'
+    );
+
+	register_setting('general', 'link_github', [
+        'type' => 'string',
+        'sanitize_callback' => 'esc_url_raw',
+        'default' => ''
+    ]);
+
+	add_settings_field(
+        'link_youtube',
+        'Link Youtube',
+        'link_youtube_render',
+        'general',
+        'link'
+    );
+
+	register_setting('general', 'link_youtube', [
+        'type' => 'string',
+        'sanitize_callback' => 'esc_url_raw',
+        'default' => ''
+    ]);
 }
 add_action('admin_init', 'my_custom_settings_init');
 
+// Hàm render trường cài đặt Email
 function my_custom_email_field_render() {
     $emails = get_option('my_custom_email_field', '');
-    echo '<p class="description">Nhập mail. Nếu nhập nhiều mail, hãy để mail cách nhau bằng ","</p><br>';
+    echo '<p class="description">Nhập email. Nếu nhập nhiều email, hãy để email cách nhau bằng ","</p>';
     echo '<input type="text" id="my_custom_email_field" name="my_custom_email_field" value="' . esc_attr($emails) . '" class="regular-text ltr" />';
+}
+
+function footer_logo_render() {
+	$logo = get_option('footer_logo', '');
+    echo '<p class="description">Nhập logo footer.</p>';
+    echo '<input type="text" id="footer_logo" name="footer_logo" value="' . esc_attr($logo) . '" class="regular-text ltr" />';
+}
+
+function footer_address_render() {
+    $address = get_option('footer_address', '');
+    echo '<p class="description">Nhập địa chỉ của bạn.</p>';
+    echo '<textarea id="footer_address" name="footer_address" rows="3" class="large-text">' . esc_textarea($address) . '</textarea>';
+}
+
+function footer_email_render() {
+    $email = get_option('footer_email', '');
+    echo '<p class="description">Nhập email của bạn.</p>';
+    echo '<input type="email" id="footer_email" name="footer_email" value="' . esc_attr($email) . '" class="regular-text ltr" />';
+}
+
+function footer_phone_render() {
+    $phone = get_option('footer_phone', '');
+    echo '<p class="description">Nhập số điện thoại của bạn.</p>';
+    echo '<input type="text" id="footer_phone" name="footer_phone" value="' . esc_attr($phone) . '" class="regular-text ltr" />';
+}
+
+function link_facebook_render() {
+	$link = get_option('link_facebook', '');
+    echo '<p class="description">Nhập url facebook.</p>';
+    echo '<input type="text" id="link_facebook" name="link_facebook" value="' . esc_attr($link) . '" class="regular-text ltr" />';
+}
+
+function link_linkedin_render() {
+	$link = get_option('link_linkedin', '');
+    echo '<p class="description">Nhập url linkedin.</p>';
+    echo '<input type="text" id="link_linkedin" name="link_linkedin" value="' . esc_attr($link) . '" class="regular-text ltr" />';
+}
+
+function link_github_render() {
+	$link = get_option('link_github', '');
+    echo '<p class="description">Nhập url github.</p>';
+    echo '<input type="text" id="link_github" name="link_github" value="' . esc_attr($link) . '" class="regular-text ltr" />';
+}
+
+function link_youtube_render() {
+	$link = get_option('link_youtube', '');
+    echo '<p class="description">Nhập url youtube.</p>';
+    echo '<input type="text" id="link_youtube" name="link_youtube" value="' . esc_attr($link) . '" class="regular-text ltr" />';
 }
 
 function handle_contact_form_submission() {
@@ -382,9 +559,12 @@ add_action('wp', 'handle_contact_form_submission');
 function language_selector_shortcode() {
     ob_start();
     ?>
-	<select class="notranslate md:w-[160px]" id="select-language-option">
-		<option value="">Select Language</option>
-	</select>
+	<div class="language-icon m-auto flex" id="language-icon">
+		<!-- <div id="language-icon">🌐</div> -->
+		<select class="notranslate md:w-[185px] max-md:w-[80px]" id="select-language-option">
+			<option value="">Select Language</option>
+		</select>
+	</div>
     <div id="google_translate_element"></div>
     <?php return ob_get_clean();
 }

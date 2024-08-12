@@ -203,3 +203,17 @@ function clearGoogleTranslateCache() {
 document.addEventListener('DOMContentLoaded', function () {
 	clearGoogleTranslateCache();
 });
+
+const menuI = document.querySelector('.menu-item');
+const subMenu = menuI.querySelector('.sub-menu');
+menuI.addEventListener('mouseover', function () {
+	if (subMenu) {
+		subMenu.style.display = 'block';
+	}
+});
+
+menuI.addEventListener('mouseout', function () {
+	if (subMenu) {
+		subMenu.style.display = 'none';
+	}
+});
