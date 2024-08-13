@@ -1,0 +1,203 @@
+0000.001 (0) Opened log file at time: Tue, 13 Aug 2024 01:26:40 +0000 on http://localhost
+0000.003 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.24.4 WP: 6.6.1 PHP: 8.1.6 (apache2handler, Windows NT LAPTOP-A9J7VM5Q 10.0 build 22631 (Windows 11) AMD64) MySQL: 10.4.24-MariaDB (max packet size=1048576) WPLANG: en_US Server: Apache/2.4.53 (Win64) OpenSSL/1.1.1n PHP/8.1.6 safe_mode: 0 max_execution_time: 900 memory_limit: 512M (used: 59.7M | 62M) multisite: N openssl: OpenSSL 1.1.1n  15 Mar 2022 mcrypt: N LANG:  ZipArchive::addFile: Y
+0000.005 (0) Free space on disk containing Updraft's temporary directory: 271426.4 MB
+0000.008 (0) Tasks: Backup files: 1 (schedule: twicedaily) Backup DB:  (schedule: daily)
+0000.009 (0) Processed schedules. Tasks now: Backup files: 1 Backup DB: 
+0000.013 (0) Requesting semaphore lock (f) (apparently via scheduler: last_scheduled_action_called_at=1723425723, seconds_ago=86677)
+0000.018 (0) Set semaphore last lock (f) time to 2024-08-13 01:26:40
+0000.020 (0) Semaphore lock (f) complete
+0000.024 (0) Backup run: resumption=0, nonce=9db5815fc621, file_nonce=9db5815fc621 begun at=1723512400 (0s ago), job type=backup
+0000.027 (0) Scheduling a resumption (1) after 300 seconds (1723512700) in case this run gets aborted
+0000.037 (0) Checking if we have a zip executable available
+0000.040 (0) Creation of backups of directories: beginning
+0000.045 (0) Beginning creation of dump of plugins (split every: 400 MB)
+0000.755 (0) Total entities for the zip file: 706 directories, 4263 files (0 skipped as non-modified), 60.6 MB
+0000.777 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 100 files added (on-disk size: 0 KB)
+0000.796 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 200 files added (on-disk size: 0 KB)
+0000.814 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 300 files added (on-disk size: 0 KB)
+0000.832 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 400 files added (on-disk size: 0 KB)
+0000.851 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 500 files added (on-disk size: 0 KB)
+0000.869 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 600 files added (on-disk size: 0 KB)
+0000.888 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 700 files added (on-disk size: 0 KB)
+0000.906 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 800 files added (on-disk size: 0 KB)
+0000.925 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 900 files added (on-disk size: 0 KB)
+0000.948 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1000 files added (on-disk size: 0 KB)
+0000.950 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (23.7 MB, 4263 files batched, 1001 (1001) added so far); re-opening (prior size: 0 KB)
+0004.898 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1100 files added (on-disk size: 7224.2 KB)
+0004.919 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1200 files added (on-disk size: 7224.2 KB)
+0004.938 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1300 files added (on-disk size: 7224.2 KB)
+0004.960 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1400 files added (on-disk size: 7224.2 KB)
+0004.980 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1500 files added (on-disk size: 7224.2 KB)
+0004.999 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1600 files added (on-disk size: 7224.2 KB)
+0005.021 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1700 files added (on-disk size: 7224.2 KB)
+0005.040 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1800 files added (on-disk size: 7224.2 KB)
+0005.060 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 1900 files added (on-disk size: 7224.2 KB)
+0005.079 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2000 files added (on-disk size: 7224.2 KB)
+0005.081 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (16.9 MB, 4263 files batched, 1001 (2002) added so far); re-opening (prior size: 7224.2 KB)
+0009.444 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2100 files added (on-disk size: 13797.6 KB)
+0009.464 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2200 files added (on-disk size: 13797.6 KB)
+0009.483 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2300 files added (on-disk size: 13797.6 KB)
+0009.502 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2400 files added (on-disk size: 13797.6 KB)
+0009.523 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2500 files added (on-disk size: 13797.6 KB)
+0009.541 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2600 files added (on-disk size: 13797.6 KB)
+0009.565 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2700 files added (on-disk size: 13797.6 KB)
+0009.584 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2800 files added (on-disk size: 13797.6 KB)
+0009.604 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 2900 files added (on-disk size: 13797.6 KB)
+0009.624 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3000 files added (on-disk size: 13797.6 KB)
+0009.627 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (10.7 MB, 4263 files batched, 1001 (3003) added so far); re-opening (prior size: 13797.6 KB)
+0012.586 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3100 files added (on-disk size: 17290.9 KB)
+0012.609 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3200 files added (on-disk size: 17290.9 KB)
+0012.629 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3300 files added (on-disk size: 17290.9 KB)
+0012.649 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3400 files added (on-disk size: 17290.9 KB)
+0012.667 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3500 files added (on-disk size: 17290.9 KB)
+0012.688 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3600 files added (on-disk size: 17290.9 KB)
+0012.707 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3700 files added (on-disk size: 17290.9 KB)
+0012.727 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3800 files added (on-disk size: 17290.9 KB)
+0012.747 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 3900 files added (on-disk size: 17290.9 KB)
+0012.768 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 4000 files added (on-disk size: 17290.9 KB)
+0012.771 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (8 MB, 4263 files batched, 1001 (4004) added so far); re-opening (prior size: 17290.9 KB)
+0015.200 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 4100 files added (on-disk size: 20655.8 KB)
+0015.218 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.tmp: 4200 files added (on-disk size: 20655.8 KB)
+0015.505 (0) Creating zip file manifest (backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.list-temp.tmp)
+0015.517 (0) Successfully created zip file manifest (size: 353026)
+0015.666 (0) Created plugins zip (0) - 21099.2 KB in 15.6 s (1351.1 KB/s) (sha1: d09cc8400043aee8c1b9f12d97bf37b63ef32359, sha256: 1d7dff45e046842d0da2a4e55edaa2c56113bb3ebb6ed412a3525afd94d4ffd3)
+0015.673 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0015.674 (0) No remote despatch: user chose no remote backup service
+0015.675 (0) Recording as successfully uploaded: backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip
+0015.678 (0) Deleting zip manifest (backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip.list.tmp)
+0015.682 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0015.684 (0) Number of backup sets in history: 3; groups (db): 1
+0015.685 (0) Examining (for databases) backup set with group_id=0, nonce=b79b76368798, datestamp=1723428760 (Aug 12 2024 02:12:40)
+0015.687 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0015.688 (0) Examining (for databases) backup set with group_id=0, nonce=bb25b0bc39a3, datestamp=1723428672 (Aug 12 2024 02:11:12)
+0015.688 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0015.689 (0) Examining (for databases) backup set with group_id=0, nonce=5a42c05d3a98, datestamp=1723425723 (Aug 12 2024 01:22:03)
+0015.689 (0) Number of backup sets in history: 3; groups (files): 1
+0015.691 (0) Examining (for files) backup set with nonce=b79b76368798, datestamp=1723428760 (Aug 12 2024 02:12:40)
+0015.691 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0015.692 (0) Examining (for files) backup set with nonce=bb25b0bc39a3, datestamp=1723428672 (Aug 12 2024 02:11:12)
+0015.692 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0015.693 (0) Examining (for files) backup set with nonce=5a42c05d3a98, datestamp=1723425723 (Aug 12 2024 01:22:03)
+0015.693 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0015.694 (0) Retain: saving new backup history (sets now: 3) and finishing retain operation
+0015.703 (0) Beginning creation of dump of themes (split every: 400 MB)
+0015.721 (0) Total entities for the zip file: 14 directories, 88 files (0 skipped as non-modified), 46.8 MB
+0015.730 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (33.4 MB, 88 files batched, 36 (36) added so far); re-opening (prior size: 0 KB)
+0016.688 (0) A useful amount of data was added after this amount of zip processing: 1.7 s (normalised: 1.3 s, rate: 19991.7 KB/s)
+0016.691 (0) Performance is good - will increase the amount of data we attempt to batch (time=1.7083480358124, normalised_time=1.2805291570436, max_time=16.688902139664, data points known=1, old_max_bytes=26214400, new_max_bytes=204988486)
+0016.993 (0) Creating zip file manifest (backup_2024-08-13-0126_Blog_9db5815fc621-themes.zip.list-temp.tmp)
+0016.996 (0) Successfully created zip file manifest (size: 5079)
+0017.311 (0) Created themes zip (0) - 46915 KB in 1.6 s (29242.7 KB/s) (sha1: 9ce66f5b2b70ae14cff1fdf47f797d99dbcc85ca, sha256: 501bdc970ea49fe4bdf35273b3af42bd62a1e6da8f09929bd1de07cf8f3f0f40)
+0017.317 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0017.318 (0) No remote despatch: user chose no remote backup service
+0017.319 (0) Recording as successfully uploaded: backup_2024-08-13-0126_Blog_9db5815fc621-themes.zip
+0017.322 (0) Deleting zip manifest (backup_2024-08-13-0126_Blog_9db5815fc621-themes.zip.list.tmp)
+0017.325 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0017.326 (0) Number of backup sets in history: 3; groups (db): 1
+0017.327 (0) Examining (for databases) backup set with group_id=0, nonce=b79b76368798, datestamp=1723428760 (Aug 12 2024 02:12:40)
+0017.327 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0017.329 (0) Examining (for databases) backup set with group_id=0, nonce=bb25b0bc39a3, datestamp=1723428672 (Aug 12 2024 02:11:12)
+0017.329 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0017.330 (0) Examining (for databases) backup set with group_id=0, nonce=5a42c05d3a98, datestamp=1723425723 (Aug 12 2024 01:22:03)
+0017.330 (0) Number of backup sets in history: 3; groups (files): 1
+0017.331 (0) Examining (for files) backup set with nonce=b79b76368798, datestamp=1723428760 (Aug 12 2024 02:12:40)
+0017.331 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0017.332 (0) Examining (for files) backup set with nonce=bb25b0bc39a3, datestamp=1723428672 (Aug 12 2024 02:11:12)
+0017.332 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0017.334 (0) Examining (for files) backup set with nonce=5a42c05d3a98, datestamp=1723425723 (Aug 12 2024 01:22:03)
+0017.334 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0017.335 (0) Retain: saving new backup history (sets now: 3) and finishing retain operation
+0017.341 (0) Exclusion option setting (uploads): backup*,*backups,backwpup*,wp-clone,snapshots
+0017.343 (0) Looking for candidates to backup in: F:\xampp\htdocs\blogwordpress/wp-content/uploads
+0017.344 (0) finding files: 2024: adding to list (1)
+0017.345 (0) finding files: bb-plugin: adding to list (2)
+0017.347 (0) finding files: elementor: adding to list (3)
+0017.348 (0) finding files: wc-logs: adding to list (4)
+0017.349 (0) finding files: woocommerce-placeholder.png: adding to list (5)
+0017.350 (0) finding files: woocommerce_uploads: adding to list (6)
+0017.352 (0) finding files: wpcf7_uploads: adding to list (7)
+0017.353 (0) Beginning creation of dump of uploads (split every: 400 MB)
+0017.376 (0) Total entities for the zip file: 11 directories, 137 files (0 skipped as non-modified), 284.4 MB
+0017.389 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 195.5 MB added on this batch (196.7 MB, 137 files batched, 70 (70) added so far); re-opening (prior size: 0 KB)
+0022.251 (0) A useful amount of data was added after this amount of zip processing: 5.3 s (normalised: 5.2 s, rate: 38212.3 KB/s)
+0022.254 (0) Performance is good - will increase the amount of data we attempt to batch (time=5.2709100246429, normalised_time=5.2387305796333, max_time=22.251755952835, data points known=1, old_max_bytes=204988486, new_max_bytes=209715200)
+0022.265 (0) Zip: backup_2024-08-13-0126_Blog_9db5815fc621-uploads.zip.tmp: 100 files added (on-disk size: 201143.2 KB)
+0024.496 (0) Creating zip file manifest (backup_2024-08-13-0126_Blog_9db5815fc621-uploads.zip.list-temp.tmp)
+0024.499 (0) Successfully created zip file manifest (size: 5968)
+0026.434 (0) Created uploads zip (0) - 290720.2 KB in 9.1 s (32027.9 KB/s) (sha1: 9db33804d259fbef84eb1a21f2a32a62ba207b0f, sha256: 7533d12291190b2f811ca3d3ba200aee0ec947179c9604b43ad22a7c9565e2da)
+0026.440 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0026.442 (0) No remote despatch: user chose no remote backup service
+0026.443 (0) Recording as successfully uploaded: backup_2024-08-13-0126_Blog_9db5815fc621-uploads.zip
+0026.446 (0) Deleting zip manifest (backup_2024-08-13-0126_Blog_9db5815fc621-uploads.zip.list.tmp)
+0026.449 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0026.451 (0) Number of backup sets in history: 3; groups (db): 1
+0026.452 (0) Examining (for databases) backup set with group_id=0, nonce=b79b76368798, datestamp=1723428760 (Aug 12 2024 02:12:40)
+0026.453 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0026.455 (0) Examining (for databases) backup set with group_id=0, nonce=bb25b0bc39a3, datestamp=1723428672 (Aug 12 2024 02:11:12)
+0026.455 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0026.456 (0) Examining (for databases) backup set with group_id=0, nonce=5a42c05d3a98, datestamp=1723425723 (Aug 12 2024 01:22:03)
+0026.456 (0) Number of backup sets in history: 3; groups (files): 1
+0026.457 (0) Examining (for files) backup set with nonce=b79b76368798, datestamp=1723428760 (Aug 12 2024 02:12:40)
+0026.457 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0026.458 (0) Examining (for files) backup set with nonce=bb25b0bc39a3, datestamp=1723428672 (Aug 12 2024 02:11:12)
+0026.458 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0026.459 (0) Examining (for files) backup set with nonce=5a42c05d3a98, datestamp=1723425723 (Aug 12 2024 01:22:03)
+0026.459 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0026.460 (0) Retain: saving new backup history (sets now: 3) and finishing retain operation
+0026.467 (0) Beginning creation of dump of mu-plugins (split every: 400 MB)
+0026.468 (0) Does not exist: F:\xampp\htdocs\blogwordpress/wp-content/mu-plugins
+0026.471 (0) There are no mu-plugins to backup. Will not raise an error.
+0026.472 (0) mu-plugins: create_zip returned an error
+0026.475 (0) Beginning backup of other directories found in the content directory (index: 0)
+0026.476 (0) Exclusion option setting (others): upgrade,cache,updraft,backup*,*backups,mysql.sql,debug.log
+0026.477 (0) Looking for candidates to backup in: F:\xampp\htdocs\blogwordpress/wp-content
+0026.479 (0) finding files: advanced-cache.php: adding to list (1)
+0026.480 (0) finding files: cache: skipping: excluded by options
+0026.481 (0) finding files: fonts: adding to list (2)
+0026.482 (0) finding files: index.php: adding to list (3)
+0026.483 (0) finding files: languages: adding to list (4)
+0026.484 (0) finding files: plugins: skipping: this is the plugins directory
+0026.485 (0) finding files: themes: skipping: this is the themes directory
+0026.487 (0) finding files: updraft: skipping: this is the updraft directory
+0026.488 (0) finding files: upgrade: skipping: excluded by options
+0026.489 (0) finding files: upgrade-temp-backup: adding to list (5)
+0026.490 (0) finding files: uploads: skipping: this is the uploads directory
+0026.491 (0) finding files: w3tc-config: adding to list (6)
+0026.493 (0) finding files: wflogs: adding to list (7)
+0026.510 (0) Total entities for the zip file: 9 directories, 93 files (0 skipped as non-modified), 12.5 MB
+0029.782 (0) Creating zip file manifest (backup_2024-08-13-0126_Blog_9db5815fc621-others.zip.list-temp.tmp)
+0029.785 (0) Successfully created zip file manifest (size: 5023)
+0029.829 (0) Created others zip (0) - 5227.7 KB in 3.3 s (1569 KB/s) (sha1: bdc17aaf3ec624ad93d46ca07cf5a2583a5c98f0, sha256: 6aa6eea61568f2d282500152a1db5c315cf81a12f094e89a1cd2642355c31cf7)
+0029.836 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0029.837 (0) No remote despatch: user chose no remote backup service
+0029.839 (0) Recording as successfully uploaded: backup_2024-08-13-0126_Blog_9db5815fc621-others.zip
+0029.842 (0) Deleting zip manifest (backup_2024-08-13-0126_Blog_9db5815fc621-others.zip.list.tmp)
+0029.845 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0029.847 (0) Number of backup sets in history: 3; groups (db): 1
+0029.848 (0) Examining (for databases) backup set with group_id=0, nonce=b79b76368798, datestamp=1723428760 (Aug 12 2024 02:12:40)
+0029.848 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0029.849 (0) Examining (for databases) backup set with group_id=0, nonce=bb25b0bc39a3, datestamp=1723428672 (Aug 12 2024 02:11:12)
+0029.849 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0029.850 (0) Examining (for databases) backup set with group_id=0, nonce=5a42c05d3a98, datestamp=1723425723 (Aug 12 2024 01:22:03)
+0029.850 (0) Number of backup sets in history: 3; groups (files): 1
+0029.852 (0) Examining (for files) backup set with nonce=b79b76368798, datestamp=1723428760 (Aug 12 2024 02:12:40)
+0029.852 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0029.853 (0) Examining (for files) backup set with nonce=bb25b0bc39a3, datestamp=1723428672 (Aug 12 2024 02:11:12)
+0029.853 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0029.854 (0) Examining (for files) backup set with nonce=5a42c05d3a98, datestamp=1723425723 (Aug 12 2024 01:22:03)
+0029.854 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0029.855 (0) Retain: saving new backup history (sets now: 3) and finishing retain operation
+0029.865 (0) Saving backup status to database (elements: 8)
+0029.869 (0) No database backup (wp) - not part of this run
+0029.872 (0) backup_2024-08-13-0126_Blog_9db5815fc621-plugins.zip: plugins: This file has already been successfully uploaded
+0029.873 (0) backup_2024-08-13-0126_Blog_9db5815fc621-themes.zip: themes: This file has already been successfully uploaded
+0029.875 (0) backup_2024-08-13-0126_Blog_9db5815fc621-uploads.zip: uploads: This file has already been successfully uploaded
+0029.876 (0) backup_2024-08-13-0126_Blog_9db5815fc621-others.zip: others: This file has already been successfully uploaded
+0029.877 (0) Saving backup history. Total backup size: 355.4 MB
+0029.881 (0) Resume backup (9db5815fc621, 0): finish run
+0029.883 (0) There were no more files that needed uploading
+0029.885 (0) Decremented the semaphore (f) by 1
+0029.888 (0) Semaphore (f) unlocked
+0029.889 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0029.896 (0) No email will be sent - this backup set was empty.
+0029.897 (0) The backup succeeded and is now complete

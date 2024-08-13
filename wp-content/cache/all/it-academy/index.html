@@ -1,0 +1,326 @@
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+const menuMobile = document.querySelector('#menu-mobile .menu-item-133');
+let html = '&lt;a href=&quot;http://localhost/it-academy/&quot; class=&quot;item-dropdown font-semibold&quot;&gt;IT Academy&lt;/a&gt;&lt;a href=&quot;http://localhost/outsource-it-service/&quot; class=&quot;item-dropdown font-semibold&quot;&gt;Outsource IT Service&lt;/a&gt;&lt;a href=&quot;http://localhost/smartsoft-solutions/&quot; class=&quot;item-dropdown font-semibold&quot;&gt;SmartSoft Solutions&lt;/a&gt;&lt;a href=&quot;http://localhost/overview/&quot; class=&quot;shrink-0 py-2 px-4 self-start max-md:text-sm text-primary font-bold rounded shadow-sm border-primary border&quot;&gt;Go to overview&lt;/a&gt;&lt;a href=&quot;http://localhost/technology-consulting/&quot; class=&quot;item-dropdown font-semibold&quot;&gt;Technology Consulting&lt;/a&gt;'
+if (menuMobile) {
+menuMobile.insertAdjacentHTML('beforeend', '<i class="bx bx-chevron-down text-base"></i>');
+menuMobile.insertAdjacentHTML('afterend', '<li class="item-menu-mb drop-down-content"><nav class="flex flex-col gap-6 px-8 py-6"><a href="http://localhost/it-academy/" class="item-dropdown font-semibold">IT Academy</a><a href="http://localhost/outsource-it-service/" class="item-dropdown font-semibold">Outsource IT Service</a><a href="http://localhost/smartsoft-solutions/" class="item-dropdown font-semibold">SmartSoft Solutions</a><a href="http://localhost/overview/" class="shrink-0 py-2 px-4 self-start max-md:text-sm text-primary font-bold rounded shadow-sm border-primary border">Go to overview</a><a href="http://localhost/technology-consulting/" class="item-dropdown font-semibold">Technology Consulting</a></nav></li>');
+}
+})
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+<title>Trang chủ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="http://localhost/wp-content/themes/themecustom/assets/images/favicon.png" />
+<!-- <link rel="stylesheet" href="http://localhost/wp-content/themes/themecustom/assets/css/reset.css" /> -->
+<!-- <link rel="stylesheet" href="http://localhost/wp-content/themes/themecustom/assets/css/style.css" /> -->
+<!-- <link rel="stylesheet" href="http://localhost/wp-content/themes/themecustom/assets/css/header.css"> -->
+<!-- <link rel="stylesheet" href="http://localhost/wp-content/themes/themecustom/assets/css/timeline.css"> -->
+<!-- <link rel="stylesheet" href="http://localhost/wp-content/themes/themecustom/assets/css/itacademy.css"> -->
+<!-- <link rel="stylesheet" href="http://localhost/wp-content/themes/themecustom/assets/css/smartsoft.css"> -->
+<link rel="stylesheet" type="text/css" href="//localhost/wp-content/cache/wpfc-minified/frfyzn1l/7uhit.css" media="all"/>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+<body>
+<div id="wap-loading">
+<div class="loading">
+</div>
+</div>
+<!-- HEADER DESKTOP -->
+<header class="w-full bg-white z-[9999]" id="header">
+<nav class="mx-auto max-w-layout flex items-center max-md:justify-between px-5 py-3 md:p-0 static max-md:relative">
+<div id="logo" class="mr-12">
+<a href="http://localhost" class="uppercase text-[32px] md:text-[40px] font-extrabold font-['Baloo']">
+Fourier				</a>
+</div>
+<!-- Start Menu Desktop-->
+<ul id="menu-desktop" class="flex-1 text-primary leading-6 gap-2 hidden md:flex"><li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-11"><a href="http://localhost/">Home</a></li>
+<li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-133"><a>Solutions</a></li>
+<li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="http://localhost/case-study/">Case study</a></li>
+<li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25"><a href="http://localhost/contact-us/">Contact us</a></li>
+</ul>
+<!-- End Menu Desktop -->
+<!-- Start Menu Mobile -->
+<ul id="menu-mobile" class="absolute w-full top-full bg-white z-50 left-0 pb-6 pt-2 shadow-md md:hidden"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-11"><a href="http://localhost/">Home</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-133"><a>Solutions</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="http://localhost/case-study/">Case study</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25"><a href="http://localhost/contact-us/">Contact us</a></li>
+</ul>      <!-- End Menu Mobile -->
+<!-- Start: Get in touch -->
+<div class="flex gap-4 md:gap-6">
+<select class="notranslate md:w-[160px]" id="select-language-option">
+<option value="">Select Language</option>
+</select>
+<div id="google_translate_element"></div>
+<button type="button"
+class="showModal py-2 px-4 bg-primary max-md:text-sm text-white font-bold rounded shadow-md hover:bg-secondary">Get in touch</button>
+<button type="button" id="toggleMenu" class="md:hidden"><i class='bx bx-menu text-2xl'></i></button>
+</div>
+<!-- End: Get in touch -->
+</nav>
+<!-- START:MEGA MENU -->
+<div class="mega-menu-content w-full flex absolute shadow hidden z-[9999]">
+<div class="bg-primary flex-1"></div>
+<div class="max-w-layout w-full flex shrink-0">
+<div class="max-w-[400px] w-[1265px] md:py-8 md:pr-8 text-sm leading-6 text-white flex flex-col items-start bg-primary">
+<h2 class="text-3xl font-bold leading-10">Solutions</h2>
+<p class="mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<a href="http://localhost/overview/" class="btn-border-gradient px-4 py-2 mt-6 font-semibold rounded" tabindex="0">Go to overview</a>
+</div>
+<div class="md:py-8 md:pl-8 bg-white">
+<div class="grid md:grid-cols-3 grid-cols-1 gap-8">
+<div>
+<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
+<a href="http://localhost/it-academy/">IT Academy</a>
+</h2>
+<p>Providing enterprise-standard BA/DA/Dev/Tester course through on-the-job learning.</p>
+</div>
+<div>
+<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
+<a href="http://localhost/outsource-it-service/">Outsource IT Service</a>
+</h2>
+<p>Comprehensive management of applications throughout the entire lifecycle.</p>
+</div>
+<div>
+<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
+<a href="http://localhost/smartsoft-solutions/">SmartSoft Solutions</a>
+</h2>
+<p>Enhance and expand your digital investments for optimal growth.</p>
+</div>
+<div>
+<h2 class="hover:underline hover:text-secondary font-semibold text-lg mb-3">
+<a href="http://localhost/technology-consulting/">Technology Consulting</a>
+</h2>
+<p>Efficiently navigate the dynamic and rapidly evolving world</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white flex-1"></div>
+</div>
+<!-- END: MEGA MENU -->
+</header>
+<main>
+<section class="relative">
+<div class="min-h-[560px] w-full overflow-hidden relative">
+<img src="http://localhost/wp-content/uploads/2024/08/Rectangle9-13.png" alt="bg" class="absolute w-full h-full object-cover">
+</div>
+<div class="min-h-[160px] bg-white"></div>
+<div class="absolute bottom-20 max-md:bottom-0 w-full flex">
+<div class="grow max-md:flex-0 bg-white"></div>
+<div class="mx-auto w-full shrink-0 max-w-layout">
+<div class="pr-[116px] py-12 max-md:py-12 max-md:px-5 bg-white w-[80%] max-md:w-[90%]">
+<div class="flex justify-center items-center leading-6 bg-white text-primary">
+<div class="flex flex-col w-full max-w-[968px] max-md:max-w-full">
+<nav class="flex gap-2 self-start text-sm font-medium text-neutral-400">
+<span>Solutions</span>
+<span>/</span>
+<span class="text-primary">IT Academy</span>
+</nav>
+<h1 class="mt-6 text-6xl font-bold leading-[84px] max-md:max-w-full max-md:text-4xl">
+IT Academy						</h1>
+<p class="mt-6 text-base max-md:max-w-full">
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam natus asperiores rerum sequi non corporis. Nobis ipsa est esse a, quia itaque, placeat quam illum debitis adipisci cum amet ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam natus asperiores rerum sequi non corporis. Nobis ipsa est esse a, quia itaque, placeat quam illum debitis adipisci cum amet ipsum.						</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grow bg-transparent"></div>
+</div>
+</section>
+<section>
+<div
+class="flex overflow-hidden relative flex-col justify-center items-center px-16 py-20 font-semibold min-h-[480px] max-md:px-5">
+<img loading="lazy" src="http://localhost/wp-content/uploads/2024/08/demo-21.jpg" class="object-cover absolute inset-0 size-full" />
+<div
+class="flex relative flex-col justify-center items-center p-10 w-full rounded-lg backdrop-blur-[2px] bg-white bg-opacity-80 max-w-layout max-md:px-5 max-md:max-w-full">
+<div class="text-6xl font-bold text-center text-[#56A012] leading-[84px] max-md:max-w-full max-md:text-4xl">
+Who we are looking for					</div>
+<div class="self-stretch mt-6 text-xl leading-7 text-center text-stone-950 max-md:max-w-full">
+Students, university students, and professionals oriented towards pursuing a career in Technology.					</div>
+<button type="button"
+class="showModal flex gap-2 justify-center px-4 py-2 mt-8 text-sm leading-6 text-white rounded border border-lime-600 border-solid shadow bg-stone-950">
+<div>Get in touch</div>
+<img loading="lazy"
+src="https://cdn.builder.io/api/v1/image/assets/TEMP/9f56b6a25cd09f6f7e0056d75f88ca23a3ee86675271fd5267b19558bef1a58d?"
+class="shrink-0 my-auto w-4 aspect-square" />
+</button>
+</div>
+</div>
+</section>
+<section>
+<div class="flex justify-center items-center py-40 bg-primary max-md:px-5 max-md:py-16">
+<div class="flex flex-col w-full max-w-layout mx-auto max-md:max-w-full">
+<div class="text-6xl font-bold text-white max-md:max-w-full max-md:text-4xl">
+See what you can learn with
+<span class="text-white">Fourier Academy</span>
+</div>
+<div class="mt-6 text-base font-semibold leading-6 text-white max-md:max-w-full">
+We offer on-the-job training courses in professional learning
+environment which enable learners to:
+</div>
+<div class="mt-16 max-md:mt-0">
+<div class="flex gap-5 max-md:flex-col max-md:gap-0">
+<div class="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+<div
+class="flex flex-col grow self-stretch px-6 py-8 mx-auto w-full rounded-2xl bg-[#262626] max-md:px-5 max-md:mt-8">
+<div class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-500">
+<div>01</div>
+<div class="flex-1 shrink-0 my-auto h-px bg-neutral-500"></div>
+</div>
+<img loading="lazy" src="http://localhost/wp-content/themes/themecustom/assets/img/home/briefcase.png" class="mt-8 w-12 aspect-square" />
+<div class="mt-3 text-sm leading-6 text-white">
+Acquire specialized skills more quickly compared to
+learning only through theory
+</div>
+</div>
+</div>
+<div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+<div
+class="flex flex-col grow px-6 py-8 mx-auto w-full rounded-2xl bg-[#262626] max-md:px-5 max-md:mt-8">
+<div class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-500">
+<div>02</div>
+<div class="flex-1 shrink-0 my-auto h-px bg-neutral-500"></div>
+</div>
+<img loading="lazy"
+src="https://cdn.builder.io/api/v1/image/assets/TEMP/ce3ac24a2087d87641463ad87ad80fce829a7ddea8b952e62dff149d8cf33958?"
+class="mt-8 w-12 aspect-square" />
+<div class="mt-3 text-sm leading-6 text-white">
+Develop soft skills such as communication, teamwork,
+problem-solving, and time management during the work
+process
+</div>
+</div>
+</div>
+<div class="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+<div
+class="flex flex-col grow px-6 py-8 mx-auto w-full rounded-2xl bg-[#262626] max-md:px-5 max-md:mt-8">
+<div class="flex gap-5 text-2xl font-medium leading-8 text-center whitespace-nowrap text-neutral-500">
+<div>03</div>
+<div class="flex-1 shrink-0 my-auto h-px bg-neutral-500"></div>
+</div>
+<img loading="lazy"
+src="https://cdn.builder.io/api/v1/image/assets/TEMP/5dea0b177a25121a2e12614bbc77c8ac048dc78f3d91305202ef6c9f70dc46d6?"
+class="mt-8 w-12 aspect-square" />
+<div class="mt-3 text-sm leading-6 text-white">
+Develop soft skills such as communication, teamwork,
+problem-solving, and time management during the work
+process
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="flex justify-center items-center px-16 py-20 bg-white text-stone-950 max-md:px-5">
+<div class="flex flex-col w-full max-w-layout max-md:max-w-full">
+<div class="text-6xl font-bold text-center leading-[84px] max-md:max-w-full max-md:text-4xl">
+Our Client's Experience
+</div>
+<div class="mt-6 text-base leading-6 text-center max-md:max-w-full">
+Enhance agility, lower costs, and expedite innovation.
+</div>
+<div id="progressItem"
+class="flex flex-nowrap overflow-x-auto my-16 text-base font-semibold leading-6 text-center bg-[#F1F1F1] text-neutral-800 max-md:mt-10">
+<!-- RENDER  -->
+</div>
+<div id="progressDetail" class="relative" data-base-url="http://localhost/wp-content/themes/themecustom">
+<!-- RENDER -->
+</div>
+</div>
+</div>
+</section>
+</main>
+	<footer class="flex flex-col items-center py-12 max-md:px-5 bg-primary w-full">
+<div class="max-w-layout mx-auto w-full">
+<a href="#" class="block uppercase text-[40px] mb-8 font-extrabold text-white font-['Baloo']">FOURIER.Inc</a>
+<div class="flex max-md:flex-col gap-8">
+<aside class="flex flex-col flex-1">
+<div class="flex flex-col grow text-sm leading-6 text-white">
+<div class="flex gap-4">
+<img loading="lazy"
+src="https://cdn.builder.io/api/v1/image/assets/TEMP/1d43e9bb5ef6ba263ca99fd55bda09ef5fc95ca2ffaaa022ec2ca7dad91d1179?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
+alt="Location Icon" class="shrink-0 my-auto w-5 aspect-square" />
+<p>117 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội</p>
+</div>
+<div class="flex gap-4 mt-4 whitespace-nowrap">
+<img loading="lazy"
+src="https://cdn.builder.io/api/v1/image/assets/TEMP/e3b040a4f8c506f01d127f6b020d1f1277a762180d7ef10871fbace0bdf1565b?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
+alt="Email Icon" class="shrink-0 my-auto w-5 aspect-square" />
+<p>contact@apec.com.vn</p>
+</div>
+<div class="flex gap-4 mt-4">
+<img loading="lazy"
+src="https://cdn.builder.io/api/v1/image/assets/TEMP/6df5da042d478cb43f8fe745edc7ece670b62a3f0d295b7a15c4bf098cbd9e97?apiKey=1e64eec6fea84ac4ac698f954b5985e2&"
+alt="Phone Icon" class="shrink-0 my-auto w-5 aspect-square" />
+<p>1900 000 000</p>
+</div>
+</div>
+</aside>
+<div class="justify-end self-stretch max-md:max-w-full">
+<div class="flex gap-5 max-md:gap-0 justify-between">
+<ul id="menu-footer" class="flex-1 text-primary leading-6 gap-2 hidden md:flex"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-11"><a href="http://localhost/">Home</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-133"><a>Solutions</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="http://localhost/case-study/">Case study</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25"><a href="http://localhost/contact-us/">Contact us</a></li>
+</ul>					</div>
+</div>
+</div>
+<hr class="mt-16 h-px bg-white w-full">
+<div class="flex justify-between gap-5 mt-8 w-full">
+<p class="flex-1 text-sm leading-6 text-white">Copyright © 2024 Fourier.Inc</p>
+<div class="flex gap-4">
+<a href="#">
+<i class='bx bxl-facebook-circle text-white text-lg md:text-2xl'></i>
+</a>
+<a href="#">
+<i class='bx bxl-linkedin-square text-white text-lg md:text-2xl'></i>
+</a>
+<a href="#">
+<i class='bx bxl-github text-white text-lg md:text-2xl'></i>
+</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- MODAL -->
+<section id="modalSupport"
+class="hidden fixed top-0 left-0 h-screen w-full p-5 z-[9999] bg-primary/50 flex justify-center items-center">
+<div class="max-w-[800px] w-full bg-white rounded-lg shadow-md flex flex-col p-8 text-sm leading-6 max-md:px-5">
+<div class="flex justify-between items-start">
+<h1 class="text-5xl font-bold leading-[72px] leading-10 text-primary max-w-full max-md:text-2xl">How can we help
+you?</h1>
+<button type="button" id="closeModal"><i class='bx bx-x text-3xl'></i></button>
+</div>
+<p class="mt-2.5 text-base leading-6 text-primary max-md:max-w-full">Fill customer's information</p>
+<form class="flex flex-col mt-8" action="/it-academy/" method="post">
+<input type="text" id="name" name="name" class="flex gap-1 px-4 py-2.5 whitespace-nowrap rounded bg-zinc-100 max-md:flex-wrap" placeholder="Name" aria-label="Name" required>
+<input type="email" id="email" name="email" class="flex gap-1 px-4 py-2.5 mt-4 rounded bg-zinc-100 max-md:flex-wrap" placeholder="E-mail address" aria-label="Email" required>
+<input type="text" id="company" name="company" class="flex gap-1 px-4 py-2.5 mt-4 rounded bg-zinc-100 max-md:flex-wrap" placeholder="Company name" aria-label="Company" required>
+<textarea id="message" name="message" rows="3" class="px-4 pt-3 pb-8 mt-4 rounded bg-zinc-100 max-md:max-w-full" placeholder="Your message" aria-label="Message"></textarea>
+<input type="hidden" name="submit_form" value="1">
+<button type="submit" class="justify-center self-end px-10 py-3 mt-6 text-base font-semibold leading-6 text-white whitespace-nowrap rounded border border-solid shadow bg-primary border-primary max-md:px-5">Submit</button>
+</form>
+</div>
+</section>
+<div id="fb-root"></div>
+<script src="http://localhost/wp-content/themes/themecustom/assets/js/tailwind_custom.js"></script>
+<script src="http://localhost/wp-content/themes/themecustom/assets/js/layout.js"></script>
+<script src="http://localhost/wp-content/themes/themecustom/assets/js/smartsoft.js"></script>
+<script src="http://localhost/wp-content/themes/themecustom/assets/js/timeline.js"></script>
+<script src="http://localhost/wp-content/themes/themecustom/assets/js/slider.js"></script>
+<script src="http://localhost/wp-content/themes/themecustom/assets/js/it_academy.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v20.0&appId=346175334287374" nonce="5AGWWsN7"></script>
+</body>
+</html><!-- WP Fastest Cache file was created in 1.2012751102448 seconds, on 12-08-24 2:09:15 -->
